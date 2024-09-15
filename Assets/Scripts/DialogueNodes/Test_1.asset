@@ -19,4 +19,4 @@ MonoBehaviour:
     choiceReaction: I know right
   - choiceText: That's lame!
     choiceValue: -1
-    choiceReaction: I worked hard on this
+    choiceReaction: It should be working for what we want

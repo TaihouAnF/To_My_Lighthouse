@@ -25,12 +25,14 @@ public class DialogueButtonScript : MonoBehaviour
     {
         //set the value of the choice
         thisNode = node;
+        thisIndex = index;
         GetComponentInChildren<TextMeshProUGUI>().SetText(thisNode.choices[index].choiceText);
     }
     
     //Called when the button is clicked by the player
     public void OnClick()
     {
+        //Tell the dialogue tree to perform the response associated with the node
         dialogueTree.ChoiceMade(thisNode, thisIndex); 
     }
 }
