@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -23,13 +20,13 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         dirc.x = Input.GetAxis("Horizontal");
-        dirc.y = Input.GetAxis("Vertical");
+        // dirc.y = Input.GetAxis("Vertical");
     }
 
     private void UpdatePlayerMovement() 
     {
         Vector2 pos = gameObject.transform.position;
-        pos += dirc.normalized * playerSpeed * Time.deltaTime;
+        pos += playerSpeed * Time.deltaTime * dirc.normalized;
         rb.MovePosition(pos);
     }
 }

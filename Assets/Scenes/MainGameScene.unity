@@ -323,11 +323,11 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1402324203}
-  m_BodyType: 0
-  m_Simulated: 0
+  m_BodyType: 1
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -399,7 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15f450831f0c40042841764b886b0ea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 0
+  playerSpeed: 5
 --- !u!1 &1434834587
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,6 +829,10 @@ PrefabInstance:
     - target: {fileID: 1905693475741454751, guid: 271624c8877a1464fb0de996b593eb46, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3818231784585811047, guid: 271624c8877a1464fb0de996b593eb46, type: 3}
+      propertyPath: pauseGame
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7611220365188178621, guid: 271624c8877a1464fb0de996b593eb46, type: 3}
       propertyPath: m_Name
