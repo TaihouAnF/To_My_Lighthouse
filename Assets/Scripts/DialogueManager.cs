@@ -14,7 +14,8 @@ public class DialogueManager : MonoBehaviour
     private DialogueNode[] dialogueNodes;
 
     //array to hold all the indicies of the used dialogue nodes to prevent repeats
-    //False
+    //False means not used
+    //True means used
     private bool[] usedIndices;
 
     private void Start()
@@ -97,7 +98,7 @@ public class DialogueManager : MonoBehaviour
     //Otherwise do nothing
     private bool CheckUsedIndicies()
     {
-
+        //Always start with 0 true
         int trueCount = 0;
 
         //Basic for loop to iterate through the index array and sum up the number of trues.
@@ -109,14 +110,18 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
+        //If all the indices were true
         if (trueCount == usedIndices.Length)
         {
+            //Then reset the array
             ResetUsedIndices();
             Debug.Log("Dialogue Manager: All indices used, resetting the array");
+            //All indicies were used so return true
             return true;
         }
         else
         {
+            //If not all indices were true then return false
             Debug.Log("DialogueManager: Not all nodes have been used");
             return false;
         }

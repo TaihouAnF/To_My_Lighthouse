@@ -1228,7 +1228,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1444198407682891683, guid: c826ff10f9a6cec4cadd1dc113b838a1, type: 3}
       propertyPath: isTesting
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1444198407682891683, guid: c826ff10f9a6cec4cadd1dc113b838a1, type: 3}
       propertyPath: characterDelay

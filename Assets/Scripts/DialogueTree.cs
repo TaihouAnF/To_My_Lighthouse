@@ -16,9 +16,12 @@ public class DialogueTree : MonoBehaviour
     [SerializeField]
     private Image shaderImage;
 
+    //The actual text that the passenger will state
+    //UI element
     [SerializeField]
     private TextMeshProUGUI passengerText;
 
+    //Textbox that the passenger text will be nested in
     [SerializeField]
     private Image passengerBox;
 
