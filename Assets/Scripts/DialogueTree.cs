@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,8 +36,13 @@ public class DialogueTree : MonoBehaviour
     private bool isActive;
 
     //Delay before the choices appear
+    [Tooltip("THe amount of time in seconds after the text has finished displaying that the choices will appear")]
     [SerializeField]
     private float textDelay;
+
+    [Tooltip("The amount of time in seconds between each character of the passenger's text appearing")]
+    [SerializeField]
+    private float characterDelay;
 
     [Header("TESTING")]//////////////////////////////////////////////////////////////////////
 
@@ -48,12 +54,18 @@ public class DialogueTree : MonoBehaviour
     [SerializeField]
     private int testingIndex = - 1;
 
+    //Pointer to the passenger manager script that the dialogue choices will interact with
+    private PassengerManagerScript passengerManager;
+
 
     // Start is called before the first frame update
     void Start()
     {
         //Set the dialogue manager by finding it in the scene based on the script
         dialogueManager = FindObjectOfType<DialogueManager>();
+
+        //Set the passenger manager by finding it in the scene based on the script
+        passengerManager = FindObjectOfType<PassengerManagerScript>();
 
         //Shouldn't start active so set isActive to false
         isActive = false;
@@ -105,10 +117,12 @@ public class DialogueTree : MonoBehaviour
 
         //Enabled the passenger's text box and set the text of it to the corresponding node's
         passengerBox.gameObject.SetActive(true);
-        passengerText.SetText(currentNode.passengerText);
+
+        StartCoroutine(RevealText(currentNode, false, 0));
+        //passengerText.SetText(currentNode.passengerText);
 
         //Wait textDelay seconds before showing the choices
-        StartCoroutine(ShowChoiceBoxes(currentNode));
+        //StartCoroutine(ShowChoiceBoxes(currentNode));
 
 
         //The dialogue tree did start so return true
@@ -136,15 +150,15 @@ public class DialogueTree : MonoBehaviour
     public void ChoiceMade(DialogueNode node, int index)
     {
         //Set the text of the passenger to the response
-        passengerText.SetText(node.choices[index].choiceReaction);
+        //passengerText.SetText(node.choices[index].choiceReaction);
 
-        //TO DO
         //Adjust the value of the passenger's mood based on the choice made
-        // node.choices[index].choiceValue
-        //TO DO
+        passengerManager.AdjustMood(node.choices[index].choiceValue);
 
         //Hide the choice buttons after a choice has been made
         CloseChoiceButtons();
+
+        StartCoroutine(RevealText(node, true, index));
     }
 
     //Function to hide the choice buttons
@@ -171,6 +185,43 @@ public class DialogueTree : MonoBehaviour
         // TO DO
         //Tell the game manager that the game state is no longer in the dialogue state
         // TO DO
+    }
+
+    //Coroutine to display the text in a type writer like fashion, one character by one
+    private IEnumerator RevealText(DialogueNode node, bool isReaction, int index)
+    {
+        //Empty the textbox of anything that was previously in it
+        passengerText.text = string.Empty;
+
+        //If this is the reaction text then we need a different part of DialogueNode
+        if (isReaction)
+        {
+            //Go through each character in the text
+            foreach (char c in node.choices[index].choiceReaction)
+            {
+                //Add each character to the text box
+                passengerText.text = passengerText.text + c;
+                //Wait characterDelay seconds before adding another character
+                yield return new WaitForSeconds(characterDelay);
+            }
+        }
+        //If this is not the reaction text then it's a lot simpler
+        else
+        {
+            //Go throuhg each character in the text
+            foreach (char c in node.passengerText)
+            {
+                //Add each character to the text box
+                passengerText.text = passengerText.text + c;
+                //Wait characterDelay seconds before adding another character
+                yield return new WaitForSeconds(characterDelay);
+            }
+
+            //Since this is the first display
+            //Show the player their choices after a brief delay
+            StartCoroutine(ShowChoiceBoxes(node));
+        }
+
     }
 
     //FUNction purely for testing
