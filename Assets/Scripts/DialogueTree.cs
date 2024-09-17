@@ -38,6 +38,17 @@ public class DialogueTree : MonoBehaviour
     [SerializeField]
     private float textDelay;
 
+    [Header("TESTING")]//////////////////////////////////////////////////////////////////////
+
+    [Tooltip("Turn on when testing dialogue, will start the tree after 1 second")]
+    [SerializeField]
+    private bool isTesting;
+
+    [Tooltip("Enter the index of the node array on the dialogue manager to test, leave at -1 to stay random")]
+    [SerializeField]
+    private int testingIndex = - 1;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,9 +58,13 @@ public class DialogueTree : MonoBehaviour
         //Shouldn't start active so set isActive to false
         isActive = false;
 
-        //Use the coroutine
-        //Remove this once or comment it out once we're actually using this in a proper scene
-        StartCoroutine(TestingFunction());
+        //If we're testing then 
+        if (isTesting)
+        {
+            //Use the coroutine
+            //Remove this once or comment it out once we're actually using this in a proper scene
+            StartCoroutine(TestingFunction());
+        }
 
     }
 
@@ -74,8 +89,19 @@ public class DialogueTree : MonoBehaviour
         //Tell the game manager that the game state has become the dialogue state
         // TO DO
 
-        //Get a dialogueNode from the dialogueManager
-        DialogueNode currentNode = dialogueManager.GetDialogueNode();
+        //Declare currentNode so that it can be used in the following statements
+        DialogueNode currentNode;
+
+        //If we're looking to test a specific dialogue
+        if (isTesting && testingIndex >= 0)
+        {
+            currentNode = dialogueManager.GetDialogueNode(testingIndex);
+        }
+        else
+        {
+            //Get a dialogueNode from the dialogueManager
+            currentNode = dialogueManager.GetDialogueNode();
+        }
 
         //Enabled the passenger's text box and set the text of it to the corresponding node's
         passengerBox.gameObject.SetActive(true);

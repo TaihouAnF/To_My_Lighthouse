@@ -61,6 +61,27 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    //Same as the above function but takes a parameter for a specific index
+    public DialogueNode GetDialogueNode(int index)
+    {
+        //Make sure one final time that the dialogue node actually exists at the array
+        if (dialogueNodes[index] != null)
+        {
+
+            //Check the indices
+            CheckUsedIndicies();
+
+            //Return the dialogue node to the dialogue tree
+            return dialogueNodes[index];
+        }
+        //Otherwise
+        else
+        {
+            //Return null
+            return null;
+        }
+    }
+
     //Function to reset all the values of the array to false
     private void ResetUsedIndices()
     {
