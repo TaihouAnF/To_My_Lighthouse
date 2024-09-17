@@ -1,26 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public bool pauseGame = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Button menuButton;
+    public Button resumeButton;
 
     // Update is called once per frame
     void Update()
     {
-        if (!pauseGame && Input.GetKey(KeyCode.Escape)) 
+        if (!pauseGame && Input.GetKeyDown(KeyCode.Escape)) 
         {
-            PauseGame();
+            PauseGameByClick();
         }
-        else if (Input.GetKey(KeyCode.Escape) )
+        else if (Input.GetKeyDown(KeyCode.Escape))
         {
-            ResumeGame();
+            ResumeGameByPress();
         }
     }
 
@@ -30,6 +29,7 @@ public class GameManager : MonoBehaviour
         // TODO: Panel to appear
         pauseGame = true;
         Time.timeScale = 0;
+        
     }
 
     public void ResumeGame() 
@@ -37,5 +37,21 @@ public class GameManager : MonoBehaviour
         // TODO: Panel disappear
         pauseGame = false;
         Time.timeScale = 1;
+        menuButton.gameObject.SetActive(true);
+        resumeButton.gameObject.SetActive(false);
+    }
+
+    public void PauseGameByClick() 
+    {
+        PauseGame();
+        menuButton.gameObject.SetActive(false);
+        resumeButton.gameObject.SetActive(true);
+    }
+
+    public void ResumeGameByPress() 
+    {
+        ResumeGame();
+        menuButton.gameObject.SetActive(true);
+        resumeButton.gameObject.SetActive(false);
     }
 }

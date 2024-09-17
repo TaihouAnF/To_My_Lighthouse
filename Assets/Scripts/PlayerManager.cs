@@ -2,31 +2,28 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public float playerSpeed;
-    private Vector2 dirc;
-    private Rigidbody2D rb;
+    [Header("Attributes")]
+    public float playerRotateSpeed;
+    private float horizontalInput;
+    private Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-    }
-
-    private void FixedUpdate() 
-    {
-        UpdatePlayerMovement();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        dirc.x = Input.GetAxis("Horizontal");
-        // dirc.y = Input.GetAxis("Vertical");
+        UpdadePlayerRotation();
     }
 
-    private void UpdatePlayerMovement() 
+    /// <summary>
+    ///  Controlling rotation of the player.
+    /// </summary>
+    private void UpdadePlayerRotation() 
     {
-        Vector2 pos = gameObject.transform.position;
-        pos += playerSpeed * Time.deltaTime * dirc.normalized;
-        rb.MovePosition(pos);
+        horizontalInput = Input.GetAxis("Horizontal");
+        transform.Rotate(Vector3.up, playerRotateSpeed * horizontalInput * Time.deltaTime);
     }
 }
