@@ -47,6 +47,10 @@ public class DialogueTree : MonoBehaviour
     [SerializeField]
     private float characterDelay;
 
+    [Tooltip("The Key that is pressed to advance the dialogue to the next scene")]
+    [SerializeField]
+    private KeyCode dialogueKey;
+
     [Header("TESTING")]//////////////////////////////////////////////////////////////////////
 
     [Tooltip("Turn on when testing dialogue, will start the tree after 1 second")]
@@ -59,7 +63,6 @@ public class DialogueTree : MonoBehaviour
 
     //Pointer to the passenger manager script that the dialogue choices will interact with
     private PassengerManagerScript passengerManager;
-
 
     // Start is called before the first frame update
     void Start()
@@ -115,7 +118,11 @@ public class DialogueTree : MonoBehaviour
         else
         {
             //Get a dialogueNode from the dialogueManager
-            currentNode = dialogueManager.GetDialogueNode();
+            //currentNode = dialogueManager.GetDialogueNode();
+
+            //Switched to sequential story telling rather than random
+            //Using the new function instead
+            currentNode = dialogueManager.GetSequentialDialogueNode();
         }
 
         //Enabled the passenger's text box and set the text of it to the corresponding node's
@@ -212,7 +219,7 @@ public class DialogueTree : MonoBehaviour
         else
         {
             //Go throuhg each character in the text
-            foreach (char c in node.passengerText)
+            foreach (char c in node.passengerText[0])
             {
                 //Add each character to the text box
                 passengerText.text = passengerText.text + c;

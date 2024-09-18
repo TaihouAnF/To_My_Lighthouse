@@ -18,8 +18,13 @@ public class DialogueManager : MonoBehaviour
     //True means used
     private bool[] usedIndices;
 
+    //Variable meant to track the current dialogueNode when used sequentially
+    private int sequentialIndex;
+
     private void Start()
     {
+
+        sequentialIndex = 0;
 
         dialogueTree = FindObjectOfType<DialogueTree>();
 
@@ -79,6 +84,29 @@ public class DialogueManager : MonoBehaviour
         else
         {
             //Return null
+            return null;
+        }
+    }
+
+    //Function to get the DialogueNodes sequentially
+    public DialogueNode GetSequentialDialogueNode() 
+    {
+        //Make sure that a node actually exists
+        if (dialogueNodes[sequentialIndex] != null)
+        {
+            //Increment the index for later
+            sequentialIndex++;
+
+            //Return the current node
+            return dialogueNodes[sequentialIndex-1];
+        }
+        //Otherwise if it doesn't exist
+        else
+        {
+            //Debug statement
+            Debug.Log("Dialogue Manager: Sequential Node index not found.");
+
+            //Return null since a valid index doesn't exist
             return null;
         }
     }
