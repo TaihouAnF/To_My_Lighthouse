@@ -1359,8 +1359,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 274928939972655339, guid: f995538644ce7b1458e354b8cf02b59f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 274928939972655339, guid: f995538644ce7b1458e354b8cf02b59f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: 1855741285915758094, guid: f995538644ce7b1458e354b8cf02b59f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1406,6 +1410,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 908038540}
+    - target: {fileID: 6421220575780789130, guid: f995538644ce7b1458e354b8cf02b59f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d147805a45e29c74aad0eb9c6af97617, type: 3}
     - target: {fileID: 8190343021746121307, guid: f995538644ce7b1458e354b8cf02b59f, type: 3}
       propertyPath: m_Name
       value: LighthouseObject
