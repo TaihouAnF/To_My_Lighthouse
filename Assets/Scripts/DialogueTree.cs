@@ -147,6 +147,10 @@ public class DialogueTree : MonoBehaviour
             //Switched to sequential story telling rather than random
             //Using the new function instead
             currentNode = dialogueManager.GetSequentialDialogueNode();
+            if(currentNode == null)
+            {
+                return false;
+            }
         }
 
         //Enabled the passenger's text box and set the text of it to the corresponding node's

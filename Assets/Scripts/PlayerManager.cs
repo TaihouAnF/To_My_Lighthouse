@@ -56,6 +56,7 @@ public class PlayerManager : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Rotate(Vector3.up, playerRotateSpeed * horizontalInput * Time.deltaTime);
+        /*
         if(horizontalInput >0)
         {
             horizon.ScrollHorizon(true);
@@ -64,6 +65,7 @@ public class PlayerManager : MonoBehaviour
         {
             horizon.ScrollHorizon(false);
         }
+        */
     }
 
     private void CheckCharge()

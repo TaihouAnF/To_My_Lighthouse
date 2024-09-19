@@ -18,12 +18,40 @@ public class WrappingHorizonScript : MonoBehaviour
 
     private float currentAngle = 0.0f;
 
+    private float previousAngle;
+
     // Start is called before the first frame update
     void Start()
     {
         scrollProgress = 0;
 
+        previousAngle = 0.0f;
+
         playerManager = FindObjectOfType<PlayerManager>();
+    }
+
+    private void Update()
+    {
+        if (playerManager!=null)
+        {
+
+            float playerY = playerManager.transform.eulerAngles.y;
+
+            if(previousAngle != playerY)
+            {
+                //previousAngle = playerManager.transform.eulerAngles.y;
+                if (previousAngle > playerY)
+                {
+                    ScrollHorizon(false);
+                }
+                else
+                {
+                    ScrollHorizon(true);
+                }
+
+                previousAngle = playerY;
+            }
+        }
     }
 
     public void ScrollHorizon(bool isRight)
