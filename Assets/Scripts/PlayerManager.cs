@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -14,7 +13,7 @@ public class PlayerManager : MonoBehaviour
     private bool hasDirection;
     [SerializeField]
     private int direction;
-    private int[] dir = { -1, 1 };
+    private readonly int[] dir = { -1, 1 };
     [SerializeField]
     private float maxY;
     [SerializeField]
@@ -30,6 +29,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private float dialogueChargeTime;
     private float currentChargeTime;
+    private float currRotation;
 
     private DialogueManager dialogueManager;
     private GameManager gameManager;
@@ -39,6 +39,7 @@ public class PlayerManager : MonoBehaviour
     {
 
         currentChargeTime = 0;
+        currRotation = 0;
 
         rb = GetComponent<Rigidbody>();
 
@@ -52,6 +53,7 @@ public class PlayerManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        horizontalInput = Input.GetAxis("Horizontal");
         if (horizontalInput != 0) 
         {
             controlling = true;
@@ -88,25 +90,17 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     private void UpdatePlayerRotation() 
     {
-        Vector3 currRotation = transform.rotation;
         if (horizontalInput != 0)
         {
-            //Debug.Log(horizontalInput);
-            Debug.Log(transform.eulerAngles.y);
-            if ((horizontalInput < 0 && transform.eulerAngles.y <= minY) || (horizontalInput > 0 && transform.eulerAngles.y >= maxY)) return;
-            //Vector3 currRotation = transform.rotation;
-
-            transform.Rotate(Vector3.up, playerRotateSpeed * horizontalInput * Time.deltaTime);
+            Debug.Log("The player is Controlling.");
+            float rotationAmount = horizontalInput * playerRotateSpeed * Time.deltaTime;
+            RotateVessel(rotationAmount);
         }
         else if (!controlling)
         {
-            Debug.Log(transform.eulerAngles.y);
-            if ((direction < 0 && transform.eulerAngles.y <= 360 - maxY) || (direction > 0 && transform.eulerAngles.y >= maxY))
-            {
-                Debug.Log("Out of Bounds now");
-                return; 
-            }
-            transform.Rotate(Vector3.up, vesselRotateSpeed * direction * Time.deltaTime);
+            Debug.Log("Now the vessel.");
+            float rotationAmount = direction * vesselRotateSpeed * Time.deltaTime;
+            RotateVessel(rotationAmount);
         }
     }
 
@@ -127,5 +121,17 @@ public class PlayerManager : MonoBehaviour
     public void ResetCharge()
     {
         currentChargeTime = 0;
+    }
+
+    private void RotateVessel(float rotationAmount) 
+    {
+        currRotation += rotationAmount;
+        currRotation = Mathf.Clamp(currRotation, minY, maxY);
+        if ((currRotation == minY && direction == -1) || (currRotation == maxY && direction == 1)) 
+        {
+            hasDirection = true;
+            direction = -direction;
+        }
+        transform.rotation = Quaternion.Euler(0f, currRotation, 0f);
     }
 }
