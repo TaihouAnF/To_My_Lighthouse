@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -6,6 +7,10 @@ public class PlayerManager : MonoBehaviour
     public float playerRotateSpeed;
     private float horizontalInput;
     private Rigidbody rb;
+
+    [Tooltip("Abs of the angle that the player must be less than on the Y axis to count as charging since they'll be facing the lighthouse")]
+    [SerializeField]
+    private float angleCheck;
     // Start is called before the first frame update
 
     [Tooltip("The value that determines in seconds how long the player has to look at the lighthouse before being prompted to answer a dialogue")]
@@ -53,7 +58,7 @@ public class PlayerManager : MonoBehaviour
     private void CheckCharge()
     {
         //Only count the charge when the game state is ACTIVE not paused
-        if(gameManager.GetGameState() == GameState.ACTIVE)
+        if(gameManager.GetGameState() == GameState.ACTIVE && Mathf.Abs(transform.eulerAngles.y) <= angleCheck)
         {
             currentChargeTime += Time.deltaTime;
             if(currentChargeTime >= dialogueChargeTime)

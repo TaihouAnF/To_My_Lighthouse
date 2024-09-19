@@ -28,6 +28,11 @@ public class PassengerManagerScript : MonoBehaviour
     //Pointer to the dialogue manager
     private DialogueManager dialogueManager;
 
+    //Private int to track the number of wrong choices made in a row
+    //Distance forward is multiplied by this to prevent soft locking situations
+    //Never 0, always >=1
+    private int numWrong;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +47,9 @@ public class PassengerManagerScript : MonoBehaviour
 
         //Set the currentMood to the startingMood
         currentMood = startingMood;
+
+        //Set it to 1
+        numWrong = 1;
     } 
 
     public void AdjustMood(int value)
@@ -60,16 +68,21 @@ public class PassengerManagerScript : MonoBehaviour
         if(value > 0)
         {
             //Move distance towards the player
-            lighthouseManager.ShouldMove(10, true);
+            lighthouseManager.ShouldMove(distance * numWrong, true);
+
+            //Got the correct choice, so reset numWrong back to 1
+            numWrong = 1;
         }
         //If it was a negative reaction
         else
         {
             //Move distance away from the player
-            lighthouseManager.ShouldMove(10, false);
+            lighthouseManager.ShouldMove(distance, false);
 
             //Revert the index back to the previous so that the player can't lock themselves out
             dialogueManager.RollbackSequentialIndex();
+
+            numWrong++;
         }
 
         //Debug statement for evaluating the passenger's mood
