@@ -336,7 +336,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 235962734}
   - {fileID: 1762374340}
   - {fileID: 1292228678}
   m_Father: {fileID: 0}
@@ -455,8 +454,9 @@ GameObject:
   - component: {fileID: 235962737}
   - component: {fileID: 235962736}
   - component: {fileID: 235962735}
+  - component: {fileID: 235962738}
   m_Layer: 0
-  m_Name: Quad
+  m_Name: Horizon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -471,11 +471,11 @@ Transform:
   m_GameObject: {fileID: 235962733}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.1753, y: -2.19, z: 129.9}
+  m_LocalPosition: {x: 0, y: 0, z: 30}
   m_LocalScale: {x: 290.5864, y: 8.8202, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 82087675}
+  m_Father: {fileID: 908038539}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &235962735
 MeshCollider:
@@ -549,6 +549,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 235962733}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &235962738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235962733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a5de6d12cba9424e92dc76528a495df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollAmount: 1
+  horizonDistance: 0
 --- !u!1001 &318943894
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -823,7 +837,7 @@ PrefabInstance:
       objectReference: {fileID: 1237701457}
     - target: {fileID: 3818231784585811047, guid: 271624c8877a1464fb0de996b593eb46, type: 3}
       propertyPath: startingDistance
-      value: 30
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 7611220365188178621, guid: 271624c8877a1464fb0de996b593eb46, type: 3}
       propertyPath: m_Name
@@ -953,7 +967,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3264865188389965017, guid: e2171c255a8d40444b22417503995905, type: 3}
       propertyPath: dialogueChargeTime
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4160993329010696272, guid: e2171c255a8d40444b22417503995905, type: 3}
       propertyPath: m_IsActive
@@ -1009,6 +1023,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8174374570710444638, guid: e2171c255a8d40444b22417503995905, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1428749841}
+    - targetCorrespondingSourceObject: {fileID: 8174374570710444638, guid: e2171c255a8d40444b22417503995905, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 235962734}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2171c255a8d40444b22417503995905, type: 3}
 --- !u!4 &908038539 stripped
@@ -1351,7 +1368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1855741285915758094, guid: f995538644ce7b1458e354b8cf02b59f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.41
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1855741285915758094, guid: f995538644ce7b1458e354b8cf02b59f, type: 3}
       propertyPath: m_LocalPosition.z

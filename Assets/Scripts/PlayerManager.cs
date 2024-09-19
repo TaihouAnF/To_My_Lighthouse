@@ -21,6 +21,7 @@ public class PlayerManager : MonoBehaviour
     private DialogueManager dialogueManager;
     private GameManager gameManager;
     private LightHouseManager lightHouseManager;
+    private WrappingHorizonScript horizon;
 
     void Start()
     {
@@ -32,6 +33,7 @@ public class PlayerManager : MonoBehaviour
         dialogueManager = FindObjectOfType<DialogueManager>();
         gameManager = FindObjectOfType<GameManager>();
         lightHouseManager = FindObjectOfType<LightHouseManager>();
+        horizon = FindObjectOfType<WrappingHorizonScript>();
     }
 
     // Update is called once per frame
@@ -54,6 +56,14 @@ public class PlayerManager : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Rotate(Vector3.up, playerRotateSpeed * horizontalInput * Time.deltaTime);
+        if(horizontalInput >0)
+        {
+            horizon.ScrollHorizon(true);
+        }
+        else if(horizontalInput <0)
+        {
+            horizon.ScrollHorizon(false);
+        }
     }
 
     private void CheckCharge()
