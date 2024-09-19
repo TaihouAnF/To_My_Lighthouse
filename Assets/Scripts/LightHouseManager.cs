@@ -88,9 +88,7 @@ public class LightHouseManager : MonoBehaviour
     /// <param name="towards">The direction of moving, True means move towards and False means move away.</param>
     public void ShouldMove(float dist, bool towards)
     {
-        Debug.Log(inMotion);
-        if (!inMotion) inMotion = true;
-        Debug.Log(inMotion);
+        movingTriggered = true;
         distance = dist;
         direction = towards ? (player.transform.position - transform.position).normalized :
                               (transform.position - player.transform.position).normalized;
