@@ -34,6 +34,7 @@ public class PlayerManager : MonoBehaviour
     private DialogueManager dialogueManager;
     private GameManager gameManager;
     private LightHouseManager lightHouseManager;
+    private WrappingHorizonScript horizon;
 
     void Start()
     {
@@ -46,6 +47,7 @@ public class PlayerManager : MonoBehaviour
         dialogueManager = FindObjectOfType<DialogueManager>();
         gameManager = FindObjectOfType<GameManager>();
         lightHouseManager = FindObjectOfType<LightHouseManager>();
+        horizon = FindObjectOfType<WrappingHorizonScript>();
 
         controlling = false;
         hasDirection = true;

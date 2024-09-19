@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
         Vector3 lighthouseStartingPos = FindObjectOfType<LightHouseManager>().transform.position;
         lighthouseStartingPos.z = startingDistance;
         FindObjectOfType<LightHouseManager>().transform.position = lighthouseStartingPos;
+        FindObjectOfType<WrappingHorizonScript>().UpdateDistance(startingDistance);
     }
 
     // Update is called once per frame

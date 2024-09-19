@@ -106,6 +106,7 @@ public class LightHouseManager : MonoBehaviour
         {
             float t = timeElapsed / duration;
             transform.position = Vector3.Lerp(transform.position, target, t);
+            FindObjectOfType<WrappingHorizonScript>().UpdateDistance(transform.position.z);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
