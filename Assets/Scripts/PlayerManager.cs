@@ -59,7 +59,7 @@ public class PlayerManager : MonoBehaviour
     private void CheckCharge()
     {
         //Only count the charge when the game state is ACTIVE not paused
-        if(gameManager.GetGameState() == GameState.ACTIVE && Mathf.Abs(transform.eulerAngles.y) <= angleCheck)
+        if(gameManager.GetGameState() == GameState.ACTIVE && (transform.eulerAngles.y <= angleCheck || transform.eulerAngles.y >= 360 - angleCheck))
         {
             currentChargeTime += Time.deltaTime;
             if(currentChargeTime >= dialogueChargeTime)
