@@ -7,14 +7,16 @@ public class LightHouseManager : MonoBehaviour
 {
     public float speed;
     public GameObject player;
+    public bool movingTriggered;
     public bool inMotion;
-    public float duration = 3;
-    private float timeElapsed = 0;
+    public float duration = 5f;
     private float distance;
     private Vector3 direction;
 
     void Start() {
+        movingTriggered = false;
         inMotion = false;
+
         distance = 0f;
         direction = (player.transform.position - transform.position).normalized;
     }
@@ -31,10 +33,9 @@ public class LightHouseManager : MonoBehaviour
         // {
         //     MoveTowardsTargetAuto();    // Debug purpose
         // }
-        if (inMotion) 
+        if (movingTriggered && !inMotion) 
         {
-            inMotion = false;
-            MoveLightHouse();
+            StartCoroutine(MoveLightHouse());
         }
     }
 
@@ -87,27 +88,31 @@ public class LightHouseManager : MonoBehaviour
     /// <param name="towards">The direction of moving, True means move towards and False means move away.</param>
     public void ShouldMove(float dist, bool towards)
     {
+        Debug.Log(inMotion);
         if (!inMotion) inMotion = true;
-        if (timeElapsed != 0) timeElapsed = 0;
+        Debug.Log(inMotion);
         distance = dist;
-        direction = towards ? direction : -direction;
+        direction = towards ? (player.transform.position - transform.position).normalized :
+                              (transform.position - player.transform.position).normalized;
     }
 
     /// <summary>
     /// Move the Lighthouse to the target in a duration time.
     /// </summary>
-    public void MoveLightHouse()
+    public IEnumerator MoveLightHouse()
     {
+        inMotion = true;
         Vector3 target = transform.position + distance * direction;
-        if (timeElapsed < duration) 
+        float timeElapsed = 0;
+        while (timeElapsed < duration) 
         {
             float t = timeElapsed / duration;
             transform.position = Vector3.Lerp(transform.position, target, t);
             timeElapsed += Time.deltaTime;
+            yield return null;
         }
-        else 
-        {
-            transform.position = target;
-        }
+        transform.position = target;
+        inMotion = false;
+        movingTriggered = false;
     }
 }
