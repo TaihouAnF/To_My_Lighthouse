@@ -61,6 +61,7 @@ public class PassengerManagerScript : MonoBehaviour
         {
             //Move distance towards the player
             //lighthouseManager.MoveTowardsTarget(distance);
+            lighthouseManager.ShouldMove(distance, true);
         }
         //If it was a negative reaction
         else
