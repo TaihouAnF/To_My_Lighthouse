@@ -1226,14 +1226,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1444198407682891683, guid: c826ff10f9a6cec4cadd1dc113b838a1, type: 3}
-      propertyPath: isTesting
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1444198407682891683, guid: c826ff10f9a6cec4cadd1dc113b838a1, type: 3}
-      propertyPath: characterDelay
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 2338148336657654637, guid: c826ff10f9a6cec4cadd1dc113b838a1, type: 3}
       propertyPath: m_Name
       value: DialogueTree
@@ -1331,18 +1323,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 567938387652804621, guid: 42c1532411efe83459e3a759fd75b4a6, type: 3}
-      propertyPath: dialogueNodes.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 567938387652804621, guid: 42c1532411efe83459e3a759fd75b4a6, type: 3}
-      propertyPath: dialogueNodes.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 82d3c6efaa2086a4b903424bb0b6e1f7, type: 2}
-    - target: {fileID: 567938387652804621, guid: 42c1532411efe83459e3a759fd75b4a6, type: 3}
-      propertyPath: dialogueNodes.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 815867961195408065, guid: 42c1532411efe83459e3a759fd75b4a6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 953.3212

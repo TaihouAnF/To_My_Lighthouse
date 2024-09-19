@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9481496b8b9184b877d1cd3ea338f1, type: 3}
   m_Name: Test_1
   m_EditorClassIdentifier: 
-  passengerText: This is passenger text to show that the text box works.
+  passengerText:
+  - WOWZERS we're on arrays now incase we need multiple boxes!
   choices:
   - choiceText: WOW!
     choiceValue: 1

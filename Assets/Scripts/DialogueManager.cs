@@ -21,6 +21,9 @@ public class DialogueManager : MonoBehaviour
     //Variable meant to track the current dialogueNode when used sequentially
     private int sequentialIndex;
 
+    //Pointer to the game manager in the scene
+    private GameManager gameManager;
+
     private void Start()
     {
 
@@ -28,12 +31,30 @@ public class DialogueManager : MonoBehaviour
 
         dialogueTree = FindObjectOfType<DialogueTree>();
 
+        gameManager = FindObjectOfType<GameManager>();
+
         //Set the array to be the size of the dialogueNode array
         usedIndices = new bool[dialogueNodes.Length];
 
         //Set all the values of the array to false at the start
         ResetUsedIndices();
 
+    }
+
+    //Function to tell the dialogueTree to begin
+    //Only the dialogue manager should actually access the tree
+    public void StartDialogue()
+    {
+        gameManager.SetGameState(GameState.PAUSED);
+
+        dialogueTree.StartDialogueTree();
+
+        FindObjectOfType<PlayerManager>().ResetCharge();
+    }
+
+    public void FinishDialogue()
+    {
+        gameManager.SetGameState(GameState.ACTIVE);
     }
 
     //Function called by the dialogue tree when it opens to get a dialogue to load with the player
@@ -130,7 +151,7 @@ public class DialogueManager : MonoBehaviour
         int trueCount = 0;
 
         //Basic for loop to iterate through the index array and sum up the number of trues.
-        for(int i = 0; i <usedIndices.Length; i++)
+        for (int i = 0; i < usedIndices.Length; i++)
         {
             if (usedIndices[i])
             {
@@ -153,5 +174,11 @@ public class DialogueManager : MonoBehaviour
             Debug.Log("DialogueManager: Not all nodes have been used");
             return false;
         }
+    }
+
+    //Function to return the number of nodes stored in the manager as an int
+    public int GetNumNodes()
+    {
+        return dialogueNodes.Length;
     }
 }

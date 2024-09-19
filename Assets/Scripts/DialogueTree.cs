@@ -2,10 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+
+public enum DialogueTreeState
+{
+    INACTIVE,
+    ACTIVE,
+    WAITING
+}
 
 public class DialogueTree : MonoBehaviour
 {
@@ -64,6 +72,9 @@ public class DialogueTree : MonoBehaviour
     //Pointer to the passenger manager script that the dialogue choices will interact with
     private PassengerManagerScript passengerManager;
 
+    //Enum that tracks the current state of the Dialogue Tree
+    private DialogueTreeState currentState;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -76,6 +87,8 @@ public class DialogueTree : MonoBehaviour
         //Shouldn't start active so set isActive to false
         isActive = false;
 
+        currentState = DialogueTreeState.INACTIVE;
+
         //If we're testing then 
         if (isTesting)
         {
@@ -84,6 +97,15 @@ public class DialogueTree : MonoBehaviour
             StartCoroutine(TestingFunction());
         }
 
+    }
+
+    void Update()
+    {
+        //If we're waiting for an input and the input is pressed
+        if(currentState == DialogueTreeState.WAITING && Input.GetKeyDown(dialogueKey))
+        {
+            CloseDialogueTree();
+        }
     }
 
     //Function called when the tree should activate
@@ -96,6 +118,8 @@ public class DialogueTree : MonoBehaviour
             //The dialogue tree didn't start so return false
             return false;
         }
+
+        currentState = DialogueTreeState.ACTIVE;
 
         //Make the shader object visible so that the focus is on the dialogue and choices
         shaderImage.gameObject.SetActive(true);
@@ -133,7 +157,6 @@ public class DialogueTree : MonoBehaviour
 
         //Wait textDelay seconds before showing the choices
         //StartCoroutine(ShowChoiceBoxes(currentNode));
-
 
         //The dialogue tree did start so return true
         return true;
@@ -187,14 +210,15 @@ public class DialogueTree : MonoBehaviour
         //No longer active so set isActive to false
         isActive = false;
 
+        currentState = DialogueTreeState.INACTIVE;
+
         //Hide the non choice gameObjects since choice's should already be hidden
         passengerBox.gameObject.SetActive(false);
-
         shaderImage.gameObject.SetActive(false);
 
-        // TO DO
+
         //Tell the game manager that the game state is no longer in the dialogue state
-        // TO DO
+        dialogueManager.FinishDialogue();
     }
 
     //Coroutine to display the text in a type writer like fashion, one character by one
@@ -211,9 +235,20 @@ public class DialogueTree : MonoBehaviour
             {
                 //Add each character to the text box
                 passengerText.text = passengerText.text + c;
-                //Wait characterDelay seconds before adding another character
-                yield return new WaitForSeconds(characterDelay);
+
+                if (c == ' ')
+                {
+                    //Skip the delay if it's a space
+                    yield return new WaitForSeconds(0);
+                }
+                else
+                {
+                    //Wait characterDelay seconds before adding another character
+                    yield return new WaitForSeconds(characterDelay);
+                }
             }
+
+            currentState = DialogueTreeState.WAITING;
         }
         //If this is not the reaction text then it's a lot simpler
         else
@@ -221,10 +256,20 @@ public class DialogueTree : MonoBehaviour
             //Go throuhg each character in the text
             foreach (char c in node.passengerText[0])
             {
+
                 //Add each character to the text box
                 passengerText.text = passengerText.text + c;
-                //Wait characterDelay seconds before adding another character
-                yield return new WaitForSeconds(characterDelay);
+
+                if (c == ' ')
+                {   
+                    //Skip the delay if it's a space
+                    yield return new WaitForSeconds(0);
+                }
+                else
+                {
+                    //Wait characterDelay seconds before adding another character
+                    yield return new WaitForSeconds(characterDelay);
+                }
             }
 
             //Since this is the first display

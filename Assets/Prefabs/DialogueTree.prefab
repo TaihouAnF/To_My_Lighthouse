@@ -275,6 +275,10 @@ MonoBehaviour:
   - {fileID: 2657403084046616318}
   - {fileID: 429559649541100729}
   textDelay: 2
+  characterDelay: 0.1
+  dialogueKey: 0
+  isTesting: 1
+  testingIndex: -1
 --- !u!1 &3532529013398174939
 GameObject:
   m_ObjectHideFlags: 0

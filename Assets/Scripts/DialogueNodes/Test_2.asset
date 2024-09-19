@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9481496b8b9184b877d1cd3ea338f1, type: 3}
   m_Name: Test_2
   m_EditorClassIdentifier: 
-  passengerText: 
+  passengerText:
+  - This is honestly kind of a pain
   choices:
-  - choiceText: 
+  - choiceText: Gee wilikers batman
+    choiceValue: 1
+    choiceReaction: Coolio
+  - choiceText: Neutral Response
     choiceValue: 0
-    choiceReaction: 
+    choiceReaction: Netrual
+  - choiceText: Bad choice
+    choiceValue: -1
+    choiceReaction: Bazinga
