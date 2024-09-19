@@ -60,14 +60,13 @@ public class PassengerManagerScript : MonoBehaviour
         if(value > 0)
         {
             //Move distance towards the player
-            //lighthouseManager.MoveTowardsTarget(distance);
-            lighthouseManager.ShouldMove(distance, true);
+            lighthouseManager.ShouldMove(10, true);
         }
         //If it was a negative reaction
         else
         {
             //Move distance away from the player
-            //lighthouseManager.MoveAwayFromTarget(distance);
+            lighthouseManager.ShouldMove(10, false);
         }
 
         //Debug statement for evaluating the passenger's mood
