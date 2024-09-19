@@ -67,6 +67,9 @@ public class PassengerManagerScript : MonoBehaviour
         {
             //Move distance away from the player
             lighthouseManager.ShouldMove(10, false);
+
+            //Revert the index back to the previous so that the player can't lock themselves out
+            dialogueManager.RollbackSequentialIndex();
         }
 
         //Debug statement for evaluating the passenger's mood

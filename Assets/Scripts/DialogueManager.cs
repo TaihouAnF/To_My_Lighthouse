@@ -181,4 +181,9 @@ public class DialogueManager : MonoBehaviour
     {
         return dialogueNodes.Length;
     }
+
+    public void RollbackSequentialIndex()
+    {
+        sequentialIndex--;
+    }
 }
