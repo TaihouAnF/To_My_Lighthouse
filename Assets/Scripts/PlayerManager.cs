@@ -41,9 +41,10 @@ public class PlayerManager : MonoBehaviour
         if (gameManager.GetGameState() == GameState.ACTIVE)
         {
             UpdatePlayerRotation();
+
+            CheckCharge();
         }
 
-        CheckCharge();
     }
 
     /// <summary>
