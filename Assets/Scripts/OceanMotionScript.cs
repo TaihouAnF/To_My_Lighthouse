@@ -21,19 +21,16 @@ public class OceanMotionScript : MonoBehaviour
     [SerializeField]
     private float flowSpeed;
 
-    [SerializeField]
-    [Range(0f, 1f)]
-    private float roughness;
-
     private void Start()
     {
         scrollProgress = 0.0f;
 
         meshRenderer = GetComponent<MeshRenderer>();
-        
+
         //meshRenderer.material.Lerp(calmMaterial, roughMaterial, roughness);
 
-        meshRenderer.material.mainTextureScale = textureScale;
+        meshRenderer.material.SetTextureScale("_MainTex", textureScale);
+        meshRenderer.material.SetTextureScale("_Texture2", textureScale);
 
         //GetComponent<MeshRenderer>().material.mainTextureScale = textureScale;
     }
@@ -47,7 +44,9 @@ public class OceanMotionScript : MonoBehaviour
 
             scrollProgress += flowSpeed * Time.deltaTime;
 
-            GetComponent<MeshRenderer>().material.mainTextureOffset = new Vector2(scrollProgress, scrollProgress);
+            //GetComponent<MeshRenderer>().material.mainTextureOffset = new Vector2(scrollProgress, scrollProgress);
+            meshRenderer.material.SetTextureOffset("_MainTex", new Vector2(scrollProgress, scrollProgress));
+            meshRenderer.material.SetTextureOffset("_Texture2", new Vector2(scrollProgress, scrollProgress));
         }
 
         //meshRenderer.material.Lerp(calmMaterial, roughMaterial, roughness);
@@ -55,8 +54,4 @@ public class OceanMotionScript : MonoBehaviour
         //meshRenderer.material.mainTextureScale = textureScale;
     }
 
-    public void UpdateRoughness(float t)
-    {
-        roughness = t;
-    }
 }
