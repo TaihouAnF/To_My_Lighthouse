@@ -20,8 +20,7 @@ public class PupilManager : MonoBehaviour
 
     private void UpdatePupilPosition(Vector3 playerFacing) 
     {
-        Debug.Log(playerFacing);
-        float movingAmount = playerFacing.x * maxX; 
-        transform.position = defaultPosition + new Vector3(movingAmount, (float)(-Mathf.Cos(movingAmount / maxX) + 0.25), 0);
+        float movingAmount = playerFacing.x * maxX;     // Should be good without clamp as we times maxX and facing.x = [-1, 1].
+        transform.position = defaultPosition + new Vector3(movingAmount, 0, 0);
     }
 }
