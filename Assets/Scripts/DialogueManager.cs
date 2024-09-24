@@ -13,6 +13,11 @@ public class DialogueManager : MonoBehaviour
     [SerializeField]
     private DialogueNode[] dialogueNodes;
 
+    //Holds the dialogueNodes that exist for the monologue
+    //Goes sequentially;
+    [SerializeField]
+    private MonologueNode[] monologueNodes;
+
     //array to hold all the indicies of the used dialogue nodes to prevent repeats
     //False means not used
     //True means used
@@ -21,13 +26,22 @@ public class DialogueManager : MonoBehaviour
     //Variable meant to track the current dialogueNode when used sequentially
     private int sequentialIndex;
 
+    //Variable to track the current monologueNode
+    private int monologueIndex;
+
     //Pointer to the game manager in the scene
     private GameManager gameManager;
+
+    //Prefab for monolgue boxes
+    [SerializeField]
+    private GameObject monoPrefab;
 
     private void Start()
     {
 
         sequentialIndex = 0;
+
+        monologueIndex = 0;
 
         dialogueTree = FindObjectOfType<DialogueTree>();
 
@@ -38,6 +52,8 @@ public class DialogueManager : MonoBehaviour
 
         //Set all the values of the array to false at the start
         ResetUsedIndices();
+
+        StartCoroutine(PrepareNextMonologue(1f));
 
     }
 
@@ -110,7 +126,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     //Function to get the DialogueNodes sequentially
-    public DialogueNode GetSequentialDialogueNode() 
+    public DialogueNode GetSequentialDialogueNode()
     {
         //Make sure that a node actually exists
         if (dialogueNodes[sequentialIndex] != null)
@@ -119,7 +135,7 @@ public class DialogueManager : MonoBehaviour
             sequentialIndex++;
 
             //Return the current node
-            return dialogueNodes[sequentialIndex-1];
+            return dialogueNodes[sequentialIndex - 1];
         }
         //Otherwise if it doesn't exist
         else
@@ -186,4 +202,70 @@ public class DialogueManager : MonoBehaviour
     {
         sequentialIndex--;
     }
+
+    //Function to make sure there are no dialogue nodes in the monologue nodes and vice versa
+    private void CleanArrays()
+    {
+
+        //DialogueNode[] nodes = new DialogueNode;
+        /*
+        foreach(DialogueNode d in dialogueNodes)
+        {
+
+        }
+        */
+    }
+
+    //Function that gets the next monologue node
+    public MonologueNode GetNextMonologue()
+    {
+        //Make sure that a node actually exists
+        if (monologueNodes[monologueIndex] != null)
+        {
+            //Increment the index for later
+            monologueIndex++;
+
+            //Return the current node
+            return monologueNodes[monologueIndex - 1];
+        }
+        //Otherwise if it doesn't exist
+        else
+        {
+            //Debug statement
+            Debug.Log("Dialogue Manager: Next monologue index not found.");
+
+            //Return null since a valid index doesn't exist
+            return null;
+
+        }
+    }
+
+    public void CreateNextMonologue()
+    {
+        MonologueNode temp = GetNextMonologue();
+
+        if (temp == null)
+        {
+            return;
+        }
+
+        GameObject tempPrefab = Instantiate(monoPrefab, temp.locationVector, Quaternion.identity);
+        tempPrefab.transform.SetParent(dialogueTree.transform, false);
+        tempPrefab.transform.localScale = Vector3.one;
+        tempPrefab.GetComponent<MonologueBoxScript>().Setup(temp);
+
+    }
+
+    public IEnumerator PrepareNextMonologue(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        CreateNextMonologue();
+    }
+
+    public void CalledByBox(float delay)
+    {
+        StartCoroutine(PrepareNextMonologue(delay));
+    }
+
 }

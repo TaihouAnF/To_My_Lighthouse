@@ -844,6 +844,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3264865188389965017, guid: e2171c255a8d40444b22417503995905, type: 3}
+      propertyPath: dialogueChargeTime
+      value: 59
+      objectReference: {fileID: 0}
     - target: {fileID: 8174374570710444638, guid: e2171c255a8d40444b22417503995905, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1528,6 +1532,10 @@ PrefabInstance:
       propertyPath: characterDelay
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 2142307213759177938, guid: c826ff10f9a6cec4cadd1dc113b838a1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2338148336657654637, guid: c826ff10f9a6cec4cadd1dc113b838a1, type: 3}
       propertyPath: m_Name
       value: DialogueTree
@@ -1729,8 +1737,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 567938387652804621, guid: 42c1532411efe83459e3a759fd75b4a6, type: 3}
+      propertyPath: monoPrefab
+      value: 
+      objectReference: {fileID: 788618007505382564, guid: c208e69903d4ffe44a8dfa42da95d715, type: 3}
+    - target: {fileID: 567938387652804621, guid: 42c1532411efe83459e3a759fd75b4a6, type: 3}
       propertyPath: dialogueNodes.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 567938387652804621, guid: 42c1532411efe83459e3a759fd75b4a6, type: 3}
+      propertyPath: monologueNodes.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 567938387652804621, guid: 42c1532411efe83459e3a759fd75b4a6, type: 3}
       propertyPath: dialogueNodes.Array.data[0]
@@ -1740,6 +1756,18 @@ PrefabInstance:
       propertyPath: dialogueNodes.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: 61daa28f5ea75704d8bbee89bab24bc2, type: 2}
+    - target: {fileID: 567938387652804621, guid: 42c1532411efe83459e3a759fd75b4a6, type: 3}
+      propertyPath: monologueNodes.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: b8e0e6850f210984d8293e30c1478077, type: 2}
+    - target: {fileID: 567938387652804621, guid: 42c1532411efe83459e3a759fd75b4a6, type: 3}
+      propertyPath: monologueNodes.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: cfe6afef83dc6194bbdb410668354c2d, type: 2}
+    - target: {fileID: 567938387652804621, guid: 42c1532411efe83459e3a759fd75b4a6, type: 3}
+      propertyPath: monologueNodes.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 047efebfb4e2b8a48bfc88ebbb6a2aa5, type: 2}
     - target: {fileID: 815867961195408065, guid: 42c1532411efe83459e3a759fd75b4a6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 953.3212
