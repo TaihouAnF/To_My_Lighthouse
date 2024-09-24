@@ -15,7 +15,6 @@ public class PlayerManager : MonoBehaviour
     private int direction;
     private readonly int[] dir = { -1, 1 };
     private float horizontalInput;
-    private Rigidbody rb;
 
     [Tooltip("Abs of the angle that the player must be less than on the Y axis to count as charging since they'll be facing the lighthouse")]
     [SerializeField]
@@ -25,7 +24,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private float dialogueChargeTime;
     private float currentChargeTime;
-    private float currRotation;
+    public float moveCd;
+    private float currMoveCd;
 
     private DialogueManager dialogueManager;
     private GameManager gameManager;
@@ -36,9 +36,6 @@ public class PlayerManager : MonoBehaviour
     {
 
         currentChargeTime = 0;
-        // currRotation = 0;
-
-        rb = GetComponent<Rigidbody>();
 
         dialogueManager = FindObjectOfType<DialogueManager>();
         gameManager = FindObjectOfType<GameManager>();
@@ -47,6 +44,8 @@ public class PlayerManager : MonoBehaviour
 
         controlling = false;
         hasDirection = false;
+
+        currMoveCd = moveCd;
     }
 
     private void FixedUpdate()
@@ -78,7 +77,7 @@ public class PlayerManager : MonoBehaviour
             horizontalInput = Input.GetAxis("Horizontal");
             UpdatePlayerRotation();
 
-            CheckCharge();
+            // CheckCharge();
         }
 
     }
@@ -93,13 +92,19 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("The player is Controlling.");
             float rotationAmount = horizontalInput * playerRotateSpeed * Time.deltaTime;
             transform.Rotate(Vector3.up, rotationAmount);
+            currMoveCd = moveCd;
             // RotateVessel(rotationAmount);
         }
-        else if (!controlling)
+        else if (!controlling && currMoveCd <= 0)
         {
             Debug.Log("Now the vessel.");
             float rotationAmount = direction * vesselRotateSpeed * Time.deltaTime;
             transform.Rotate(Vector3.up, rotationAmount);
+        }
+        else 
+        {
+            Debug.Log("Cd");
+            currMoveCd -= Time.deltaTime;
         }
     }
 
@@ -126,15 +131,15 @@ public class PlayerManager : MonoBehaviour
     /// Rotate the vessel by a curtain amount.(Deprecated)
     /// </summary>
     /// <param name="rotationAmount">The Amount for the rotation.</param>
-    private void RotateVessel(float rotationAmount) 
-    {
-        currRotation += rotationAmount;
-        currRotation = Mathf.Clamp(currRotation, -10, 10);
-        if ((currRotation == -10 && direction == -1) || (currRotation == 10 && direction == -1)) 
-        {
-            hasDirection = true;
-            direction = -direction;
-        }
-        transform.rotation = Quaternion.Euler(0f, currRotation, 0f);
-    }
+    // private void RotateVessel(float rotationAmount) 
+    // {
+    //     currRotation += rotationAmount;
+    //     currRotation = Mathf.Clamp(currRotation, -10, 10);
+    //     if ((currRotation == -10 && direction == -1) || (currRotation == 10 && direction == -1)) 
+    //     {
+    //         hasDirection = true;
+    //         direction = -direction;
+    //     }
+    //     transform.rotation = Quaternion.Euler(0f, currRotation, 0f);
+    // }
 }

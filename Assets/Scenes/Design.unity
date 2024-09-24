@@ -1167,6 +1167,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: d7a0e80775ebde340aa4698f0781e1a1, type: 3}
     - target: {fileID: 3264865188389965017, guid: e2171c255a8d40444b22417503995905, type: 3}
+      propertyPath: moveCd
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3264865188389965017, guid: e2171c255a8d40444b22417503995905, type: 3}
       propertyPath: direction
       value: 0
       objectReference: {fileID: 0}

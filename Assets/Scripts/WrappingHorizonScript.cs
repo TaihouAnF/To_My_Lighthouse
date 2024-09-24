@@ -16,7 +16,7 @@ public class WrappingHorizonScript : MonoBehaviour
     [SerializeField]
     private float horizonDistance;
 
-    private float currentAngle = 0.0f;
+    // private float currentAngle = 0.0f;
 
     private float previousAngle;
 

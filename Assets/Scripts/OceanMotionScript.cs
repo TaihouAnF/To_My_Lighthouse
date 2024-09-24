@@ -5,7 +5,7 @@ using UnityEngine;
 public class OceanMotionScript : MonoBehaviour
 {
 
-    private float scrollProgress;
+    // private float scrollProgress;
 
     [SerializeField]
     private Material calmMaterial;
@@ -23,7 +23,7 @@ public class OceanMotionScript : MonoBehaviour
 
     private void Start()
     {
-        scrollProgress = 0.0f;
+        // scrollProgress = 0.0f;
 
         meshRenderer = GetComponent<MeshRenderer>();
 
