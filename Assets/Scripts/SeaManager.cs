@@ -83,6 +83,6 @@ public class SeaManager : MonoBehaviour
             cA = minCamAmp;
         }
 
-        FindObjectOfType<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = cA;
+        FindObjectOfType<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = cA;
     }
 }
