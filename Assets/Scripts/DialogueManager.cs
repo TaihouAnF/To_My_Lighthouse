@@ -53,7 +53,7 @@ public class DialogueManager : MonoBehaviour
         //Set all the values of the array to false at the start
         ResetUsedIndices();
 
-        StartCoroutine(PrepareNextMonologue(1f));
+        //StartCoroutine(PrepareNextMonologue(1f));
 
     }
 
