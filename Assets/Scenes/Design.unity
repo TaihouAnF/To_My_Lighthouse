@@ -1728,6 +1728,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameSea: {fileID: 2076083660}
   maximumAngle: 90
+  maxAmplitude: 2
+  maxFrequency: 5
 --- !u!4 &1276224737
 Transform:
   m_ObjectHideFlags: 0

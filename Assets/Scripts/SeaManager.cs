@@ -15,6 +15,18 @@ public class SeaManager : MonoBehaviour
     [SerializeField]
     private float maximumAngle;
 
+    [SerializeField]
+    private float maxAmplitude = 0.0f;
+
+    [SerializeField]
+    private float maxFrequency = 0.0f;
+
+    [SerializeField]
+    private float minAmplitude = 0.0f;
+
+    [SerializeField]
+    private float minFrequency = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +53,20 @@ public class SeaManager : MonoBehaviour
     {
 
         float t = rotation / maximumAngle;
+        float a = maxAmplitude * t;
+        float f = maxFrequency * t;
+
+        if(a < minAmplitude)
+        {
+            a = minAmplitude;
+        }
+        if(f < minFrequency)
+        {
+            f = minFrequency;
+        }
 
         seaMat.SetFloat("_Blend", t);
+        seaMat.SetFloat("_Frequency", f);
+        seaMat.SetFloat("_Amplitude", a);
     }
 }
