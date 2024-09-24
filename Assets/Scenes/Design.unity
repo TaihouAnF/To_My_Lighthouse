@@ -1162,25 +1162,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2304878349639092176, guid: e2171c255a8d40444b22417503995905, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3264865188389965017, guid: e2171c255a8d40444b22417503995905, type: 3}
-      propertyPath: maxY
-      value: 360
-      objectReference: {fileID: 0}
+    - target: {fileID: 1801027988178079316, guid: e2171c255a8d40444b22417503995905, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d7a0e80775ebde340aa4698f0781e1a1, type: 3}
     - target: {fileID: 3264865188389965017, guid: e2171c255a8d40444b22417503995905, type: 3}
       propertyPath: direction
-      value: -360
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3264865188389965017, guid: e2171c255a8d40444b22417503995905, type: 3}
-      propertyPath: vesselRotateSpeed
-      value: 20
+    - target: {fileID: 3270927899712756865, guid: e2171c255a8d40444b22417503995905, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 3264865188389965017, guid: e2171c255a8d40444b22417503995905, type: 3}
-      propertyPath: dialogueChargeTime
-      value: 6
+    - target: {fileID: 3270927899712756865, guid: e2171c255a8d40444b22417503995905, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3270927899712756865, guid: e2171c255a8d40444b22417503995905, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3270927899712756865, guid: e2171c255a8d40444b22417503995905, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 8174374570710444638, guid: e2171c255a8d40444b22417503995905, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1224,7 +1228,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8976416605463578281, guid: e2171c255a8d40444b22417503995905, type: 3}
       propertyPath: m_Name
-      value: TestPlayer
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1396,15 +1400,15 @@ PrefabInstance:
       objectReference: {fileID: 908038540}
     - target: {fileID: 8230583600829868442, guid: f7c1ec6de49a71d48bd26fde91463a9f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.061829
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8230583600829868442, guid: f7c1ec6de49a71d48bd26fde91463a9f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 22
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8230583600829868442, guid: f7c1ec6de49a71d48bd26fde91463a9f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 70.03088
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8230583600829868442, guid: f7c1ec6de49a71d48bd26fde91463a9f, type: 3}
       propertyPath: m_LocalRotation.w

@@ -14,10 +14,6 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private int direction;
     private readonly int[] dir = { -1, 1 };
-    [SerializeField]
-    private float maxY;
-    [SerializeField]
-    private float minY;
     private float horizontalInput;
     private Rigidbody rb;
 
@@ -40,7 +36,7 @@ public class PlayerManager : MonoBehaviour
     {
 
         currentChargeTime = 0;
-        currRotation = 0;
+        // currRotation = 0;
 
         rb = GetComponent<Rigidbody>();
 
@@ -50,7 +46,7 @@ public class PlayerManager : MonoBehaviour
         horizon = FindObjectOfType<WrappingHorizonScript>();
 
         controlling = false;
-        hasDirection = true;
+        hasDirection = false;
     }
 
     private void FixedUpdate()
@@ -96,13 +92,14 @@ public class PlayerManager : MonoBehaviour
         {
             Debug.Log("The player is Controlling.");
             float rotationAmount = horizontalInput * playerRotateSpeed * Time.deltaTime;
-            RotateVessel(rotationAmount);
+            transform.Rotate(Vector3.up, rotationAmount);
+            // RotateVessel(rotationAmount);
         }
         else if (!controlling)
         {
             Debug.Log("Now the vessel.");
             float rotationAmount = direction * vesselRotateSpeed * Time.deltaTime;
-            RotateVessel(rotationAmount);
+            transform.Rotate(Vector3.up, rotationAmount);
         }
     }
 
@@ -125,11 +122,15 @@ public class PlayerManager : MonoBehaviour
         currentChargeTime = 0;
     }
 
+    /// <summary>
+    /// Rotate the vessel by a curtain amount.(Deprecated)
+    /// </summary>
+    /// <param name="rotationAmount">The Amount for the rotation.</param>
     private void RotateVessel(float rotationAmount) 
     {
         currRotation += rotationAmount;
-        currRotation = Mathf.Clamp(currRotation, minY, maxY);
-        if ((currRotation == minY && direction == -1) || (currRotation == maxY && direction == 1)) 
+        currRotation = Mathf.Clamp(currRotation, -10, 10);
+        if ((currRotation == -10 && direction == -1) || (currRotation == 10 && direction == -1)) 
         {
             hasDirection = true;
             direction = -direction;
