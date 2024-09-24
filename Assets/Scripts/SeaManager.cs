@@ -1,3 +1,5 @@
+using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +28,12 @@ public class SeaManager : MonoBehaviour
 
     [SerializeField]
     private float minFrequency = 0.0f;
+
+    [SerializeField]
+    private float minCamAmp;
+
+    [SerializeField]
+    private float maxCamAmp;
 
     // Start is called before the first frame update
     void Start()
@@ -68,5 +76,13 @@ public class SeaManager : MonoBehaviour
         seaMat.SetFloat("_Blend", t);
         seaMat.SetFloat("_Frequency", f);
         seaMat.SetFloat("_Amplitude", a);
+
+        float cA = t * maxCamAmp;
+        if (cA < minCamAmp) 
+        {
+            cA = minCamAmp;
+        }
+
+        FindObjectOfType<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = cA;
     }
 }

@@ -1730,6 +1730,10 @@ MonoBehaviour:
   maximumAngle: 90
   maxAmplitude: 2
   maxFrequency: 5
+  minAmplitude: 0.3
+  minFrequency: 0.7
+  minCamAmp: 0.5
+  maxCamAmp: 2
 --- !u!4 &1276224737
 Transform:
   m_ObjectHideFlags: 0
