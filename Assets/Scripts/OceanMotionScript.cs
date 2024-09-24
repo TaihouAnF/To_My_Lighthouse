@@ -29,8 +29,8 @@ public class OceanMotionScript : MonoBehaviour
 
         //meshRenderer.material.Lerp(calmMaterial, roughMaterial, roughness);
 
-        meshRenderer.material.SetTextureScale("_MainTex", textureScale);
-        meshRenderer.material.SetTextureScale("_Texture2", textureScale);
+        //meshRenderer.material.SetTextureScale("_CalmTexture", textureScale);
+        //meshRenderer.material.SetTextureScale("_RoughTexture", textureScale);
 
         //GetComponent<MeshRenderer>().material.mainTextureScale = textureScale;
     }
@@ -42,11 +42,11 @@ public class OceanMotionScript : MonoBehaviour
         if (FindObjectOfType<GameManager>().GetGameState() == GameState.ACTIVE)
         {
 
-            scrollProgress += flowSpeed * Time.deltaTime;
+            //scrollProgress += flowSpeed * Time.deltaTime;
 
             //GetComponent<MeshRenderer>().material.mainTextureOffset = new Vector2(scrollProgress, scrollProgress);
-            meshRenderer.material.SetTextureOffset("_MainTex", new Vector2(scrollProgress, scrollProgress));
-            meshRenderer.material.SetTextureOffset("_Texture2", new Vector2(scrollProgress, scrollProgress));
+           // meshRenderer.material.SetTextureOffset("_CalmTexture", new Vector2(scrollProgress, scrollProgress));
+            //.material.SetTextureOffset("_RoughTexture", new Vector2(scrollProgress, scrollProgress));
         }
 
         //meshRenderer.material.Lerp(calmMaterial, roughMaterial, roughness);
