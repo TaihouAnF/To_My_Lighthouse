@@ -29,6 +29,7 @@ public class PlayerManager : MonoBehaviour
     private float currMoveCd;
     [SerializeField]
     private Slider progressBar;
+    private Image fillImage;
 
     private DialogueManager dialogueManager;
     private GameManager gameManager;
@@ -59,6 +60,7 @@ public class PlayerManager : MonoBehaviour
 
         currMoveCd = moveCd;
         facingDir = (lightHouse.transform.position - transform.position).normalized; 
+        fillImage = progressBar.fillRect.GetComponent<Image>();
     }
 
     private void FixedUpdate()
@@ -93,6 +95,7 @@ public class PlayerManager : MonoBehaviour
         }
         else if (gameManager.GetGameState() == GameState.ASKING) 
         {
+            Debug.Log("The player should make decision now.");
             UpdatePlayerRotation();
             CheckDirection();
         }
@@ -120,18 +123,19 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Check if the player should make decision and what did they make.
+    /// </summary>
     private void CheckDirection()
     {
         float align = Vector3.Dot(transform.forward, facingDir);
-        Debug.Log(align);
         if (gameManager.GetGameState() == GameState.ASKING && ((align > 0 && align > threshold) || (align < 0 && align < -threshold))) // The player is facing the lighthouse
         {
-            Debug.Log("The player should make a decision now.");
             // TODO: the player is facing the lighthouse/the edge
             progressBar.gameObject.SetActive(true);
             currDesTime += Time.deltaTime;
             progressBar.value = Mathf.Clamp(currDesTime / decisionTime, 0, 1);
-            // TODO: make a slide show decision time.
+            fillImage.color = Color.Lerp(Color.red, Color.green, progressBar.value / progressBar.maxValue);
             if (currDesTime >= decisionTime)
             {
                 progressBar.gameObject.SetActive(false);
@@ -151,7 +155,7 @@ public class PlayerManager : MonoBehaviour
         else 
         {
             currDesTime = 0;
-            // progressBar.value = 0;
+            progressBar.value = 0;
             progressBar.gameObject.SetActive(false);
         }
     }
