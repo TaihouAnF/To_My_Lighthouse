@@ -32,6 +32,15 @@ public class PlayerManager : MonoBehaviour
     private LightHouseManager lightHouseManager;
     private WrappingHorizonScript horizon;
 
+    [SerializeField]
+    private GameObject lightHouse;
+    [SerializeField]
+    private float threshold;
+    private Vector3 facingDir;
+    [SerializeField]
+    private float decisionTime;
+    private float currDesTime;
+
     void Start()
     {
 
@@ -46,6 +55,7 @@ public class PlayerManager : MonoBehaviour
         hasDirection = false;
 
         currMoveCd = moveCd;
+        facingDir = (lightHouse.transform.position - transform.position).normalized; 
     }
 
     private void FixedUpdate()
@@ -71,15 +81,18 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        horizontalInput = Input.GetAxis("Horizontal");
         //Only update the rotation if the game state is active
         if (gameManager.GetGameState() == GameState.ACTIVE)
         {
-            horizontalInput = Input.GetAxis("Horizontal");
             UpdatePlayerRotation();
-
-            // CheckCharge();
+            CheckCharge();
         }
-
+        else if (gameManager.GetGameState() == GameState.ASKING) 
+        {
+            UpdatePlayerRotation();
+            CheckDirection();
+        }
     }
 
     /// <summary>
@@ -89,35 +102,63 @@ public class PlayerManager : MonoBehaviour
     {
         if (horizontalInput != 0)
         {
-            Debug.Log("The player is Controlling.");
             float rotationAmount = horizontalInput * playerRotateSpeed * Time.deltaTime;
             transform.Rotate(Vector3.up, rotationAmount);
             currMoveCd = moveCd;
-            // RotateVessel(rotationAmount);
         }
         else if (!controlling && currMoveCd <= 0)
         {
-            Debug.Log("Now the vessel.");
             float rotationAmount = direction * vesselRotateSpeed * Time.deltaTime;
             transform.Rotate(Vector3.up, rotationAmount);
         }
         else 
         {
-            Debug.Log("Cd");
             currMoveCd -= Time.deltaTime;
+        }
+    }
+
+    private void CheckDirection()
+    {
+        float align = Vector3.Dot(transform.forward, facingDir);
+        Debug.Log(align);
+        if (gameManager.GetGameState() == GameState.ASKING && ((align > 0 && align > threshold) || (align < 0 && align < -1 + threshold))) // The player is facing the lighthouse
+        {
+            Debug.Log("The player should make a decision now.");
+            // TODO: the player is facing the lighthouse/the edge
+            currDesTime += Time.deltaTime;
+            // TODO: make a slide show decision time.
+            if (currDesTime >= decisionTime)
+            {
+                if (align > 0) 
+                {
+                    // TODO The player chose lighthouse
+                    Debug.Log("The player chose lighthouse.");
+                }
+                else
+                {
+                    // TODO The player chose edge
+                    Debug.Log("The player chose edge.");
+                }
+                ResetCharge();
+            }
+        }
+        else 
+        {
+            currDesTime = 0;
         }
     }
 
     private void CheckCharge()
     {
         //Only count the charge when the game state is ACTIVE not paused
-        if(gameManager.GetGameState() == GameState.ACTIVE && (transform.eulerAngles.y <= angleCheck || transform.eulerAngles.y >= 360 - angleCheck))
+        if(gameManager.GetGameState() == GameState.ACTIVE)
         {
             currentChargeTime += Time.deltaTime;
             if(currentChargeTime >= dialogueChargeTime)
             {
                 Debug.Log("PlayerManager: Should be starting a dialogue because charge has been met");
-                dialogueManager.StartDialogue();
+                // dialogueManager.StartDialogue();
+                gameManager.SetGameState(GameState.ASKING);
             }
         }
     }
@@ -125,6 +166,7 @@ public class PlayerManager : MonoBehaviour
     public void ResetCharge()
     {
         currentChargeTime = 0;
+        gameManager.SetGameState(GameState.ACTIVE);
     }
 
     /// <summary>

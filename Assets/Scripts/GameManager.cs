@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public enum GameState
 {
     ACTIVE,
-    PAUSED
+    PAUSED,
+    ASKING
 }
 
 

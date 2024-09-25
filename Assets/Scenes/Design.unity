@@ -1168,11 +1168,27 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: d7a0e80775ebde340aa4698f0781e1a1, type: 3}
     - target: {fileID: 3264865188389965017, guid: e2171c255a8d40444b22417503995905, type: 3}
       propertyPath: moveCd
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3264865188389965017, guid: e2171c255a8d40444b22417503995905, type: 3}
       propertyPath: direction
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3264865188389965017, guid: e2171c255a8d40444b22417503995905, type: 3}
+      propertyPath: threshold
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3264865188389965017, guid: e2171c255a8d40444b22417503995905, type: 3}
+      propertyPath: lightHouse
+      value: 
+      objectReference: {fileID: 961940141}
+    - target: {fileID: 3264865188389965017, guid: e2171c255a8d40444b22417503995905, type: 3}
+      propertyPath: decisionTime
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3264865188389965017, guid: e2171c255a8d40444b22417503995905, type: 3}
+      propertyPath: dialogueChargeTime
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3270927899712756865, guid: e2171c255a8d40444b22417503995905, type: 3}
       propertyPath: m_LocalScale.x
@@ -1248,6 +1264,11 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8976416605463578281, guid: e2171c255a8d40444b22417503995905, type: 3}
   m_PrefabInstance: {fileID: 908038538}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &961940141 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8190343021746121307, guid: f995538644ce7b1458e354b8cf02b59f, type: 3}
+  m_PrefabInstance: {fileID: 1252373814}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1015238880
 GameObject:
