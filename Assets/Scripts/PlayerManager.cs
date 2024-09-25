@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class PlayerManager : MonoBehaviour
     private float currentChargeTime;
     public float moveCd;
     private float currMoveCd;
+    [SerializeField]
+    private Slider progressBar;
 
     private DialogueManager dialogueManager;
     private GameManager gameManager;
@@ -121,14 +124,17 @@ public class PlayerManager : MonoBehaviour
     {
         float align = Vector3.Dot(transform.forward, facingDir);
         Debug.Log(align);
-        if (gameManager.GetGameState() == GameState.ASKING && ((align > 0 && align > threshold) || (align < 0 && align < -1 + threshold))) // The player is facing the lighthouse
+        if (gameManager.GetGameState() == GameState.ASKING && ((align > 0 && align > threshold) || (align < 0 && align < -threshold))) // The player is facing the lighthouse
         {
             Debug.Log("The player should make a decision now.");
             // TODO: the player is facing the lighthouse/the edge
+            progressBar.gameObject.SetActive(true);
             currDesTime += Time.deltaTime;
+            progressBar.value = Mathf.Clamp(currDesTime / decisionTime, 0, 1);
             // TODO: make a slide show decision time.
             if (currDesTime >= decisionTime)
             {
+                progressBar.gameObject.SetActive(false);
                 if (align > 0) 
                 {
                     // TODO The player chose lighthouse
@@ -145,6 +151,8 @@ public class PlayerManager : MonoBehaviour
         else 
         {
             currDesTime = 0;
+            // progressBar.value = 0;
+            progressBar.gameObject.SetActive(false);
         }
     }
 
