@@ -61,7 +61,7 @@ public class DialogueManager : MonoBehaviour
     //Only the dialogue manager should actually access the tree
     public void StartDialogue()
     {
-        gameManager.SetGameState(GameState.PAUSED);
+        // gameManager.SetGameState(GameState.PAUSED);
 
         dialogueTree.StartDialogueTree();
 

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -14,12 +15,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private int direction;
     private readonly int[] dir = { -1, 1 };
-    [SerializeField]
-    private float maxY;
-    [SerializeField]
-    private float minY;
     private float horizontalInput;
-    private Rigidbody rb;
 
     [Tooltip("Abs of the angle that the player must be less than on the Y axis to count as charging since they'll be facing the lighthouse")]
     [SerializeField]
@@ -29,20 +25,30 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private float dialogueChargeTime;
     private float currentChargeTime;
-    private float currRotation;
+    public float moveCd;
+    private float currMoveCd;
+    [SerializeField]
+    private Slider progressBar;
+    private Image fillImage;
 
     private DialogueManager dialogueManager;
     private GameManager gameManager;
     private LightHouseManager lightHouseManager;
     private WrappingHorizonScript horizon;
 
+    [SerializeField]
+    private GameObject lightHouse;
+    [SerializeField]
+    private float threshold;
+    private Vector3 facingDir;
+    [SerializeField]
+    private float decisionTime;
+    private float currDesTime;
+
     void Start()
     {
 
         currentChargeTime = 0;
-        currRotation = 0;
-
-        rb = GetComponent<Rigidbody>();
 
         dialogueManager = FindObjectOfType<DialogueManager>();
         gameManager = FindObjectOfType<GameManager>();
@@ -50,7 +56,11 @@ public class PlayerManager : MonoBehaviour
         horizon = FindObjectOfType<WrappingHorizonScript>();
 
         controlling = false;
-        hasDirection = true;
+        hasDirection = false;
+
+        currMoveCd = moveCd;
+        facingDir = (lightHouse.transform.position - transform.position).normalized; 
+        fillImage = progressBar.fillRect.GetComponent<Image>();
     }
 
     private void FixedUpdate()
@@ -76,15 +86,19 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        horizontalInput = Input.GetAxis("Horizontal");
         //Only update the rotation if the game state is active
         if (gameManager.GetGameState() == GameState.ACTIVE)
         {
-            horizontalInput = Input.GetAxis("Horizontal");
             UpdatePlayerRotation();
-
             CheckCharge();
         }
-
+        else if (gameManager.GetGameState() == GameState.ASKING) 
+        {
+            Debug.Log("The player should make decision now.");
+            UpdatePlayerRotation();
+            CheckDirection();
+        }
     }
 
     /// <summary>
@@ -94,28 +108,69 @@ public class PlayerManager : MonoBehaviour
     {
         if (horizontalInput != 0)
         {
-            Debug.Log("The player is Controlling.");
             float rotationAmount = horizontalInput * playerRotateSpeed * Time.deltaTime;
-            RotateVessel(rotationAmount);
+            transform.Rotate(Vector3.up, rotationAmount);
+            currMoveCd = moveCd;
         }
-        else if (!controlling)
+        else if (!controlling && currMoveCd <= 0)
         {
-            Debug.Log("Now the vessel.");
             float rotationAmount = direction * vesselRotateSpeed * Time.deltaTime;
-            RotateVessel(rotationAmount);
+            transform.Rotate(Vector3.up, rotationAmount);
+        }
+        else 
+        {
+            currMoveCd -= Time.deltaTime;
+        }
+    }
+
+    /// <summary>
+    /// Check if the player should make decision and what did they make.
+    /// </summary>
+    private void CheckDirection()
+    {
+        float align = Vector3.Dot(transform.forward, facingDir);
+        if (gameManager.GetGameState() == GameState.ASKING && ((align > 0 && align > threshold) || (align < 0 && align < -threshold))) // The player is facing the lighthouse
+        {
+            // TODO: the player is facing the lighthouse/the edge
+            progressBar.gameObject.SetActive(true);
+            currDesTime += Time.deltaTime;
+            progressBar.value = Mathf.Clamp(currDesTime / decisionTime, 0, 1);
+            fillImage.color = Color.Lerp(Color.red, Color.green, progressBar.value / progressBar.maxValue);
+            if (currDesTime >= decisionTime)
+            {
+                progressBar.gameObject.SetActive(false);
+                if (align > 0) 
+                {
+                    // TODO The player chose lighthouse
+                    Debug.Log("The player chose lighthouse.");
+                }
+                else
+                {
+                    // TODO The player chose edge
+                    Debug.Log("The player chose edge.");
+                }
+                ResetCharge();
+            }
+        }
+        else 
+        {
+            currDesTime = 0;
+            progressBar.value = 0;
+            progressBar.gameObject.SetActive(false);
         }
     }
 
     private void CheckCharge()
     {
         //Only count the charge when the game state is ACTIVE not paused
-        if(gameManager.GetGameState() == GameState.ACTIVE && (transform.eulerAngles.y <= angleCheck || transform.eulerAngles.y >= 360 - angleCheck))
+        if(gameManager.GetGameState() == GameState.ACTIVE)
         {
             currentChargeTime += Time.deltaTime;
             if(currentChargeTime >= dialogueChargeTime)
             {
                 Debug.Log("PlayerManager: Should be starting a dialogue because charge has been met");
-                dialogueManager.StartDialogue();
+                // dialogueManager.StartDialogue();
+                gameManager.SetGameState(GameState.ASKING);
             }
         }
     }
@@ -123,17 +178,22 @@ public class PlayerManager : MonoBehaviour
     public void ResetCharge()
     {
         currentChargeTime = 0;
+        gameManager.SetGameState(GameState.ACTIVE);
     }
 
-    private void RotateVessel(float rotationAmount) 
-    {
-        currRotation += rotationAmount;
-        currRotation = Mathf.Clamp(currRotation, minY, maxY);
-        if ((currRotation == minY && direction == -1) || (currRotation == maxY && direction == 1)) 
-        {
-            hasDirection = true;
-            direction = -direction;
-        }
-        transform.rotation = Quaternion.Euler(0f, currRotation, 0f);
-    }
+    /// <summary>
+    /// Rotate the vessel by a curtain amount.(Deprecated)
+    /// </summary>
+    /// <param name="rotationAmount">The Amount for the rotation.</param>
+    // private void RotateVessel(float rotationAmount) 
+    // {
+    //     currRotation += rotationAmount;
+    //     currRotation = Mathf.Clamp(currRotation, -10, 10);
+    //     if ((currRotation == -10 && direction == -1) || (currRotation == 10 && direction == -1)) 
+    //     {
+    //         hasDirection = true;
+    //         direction = -direction;
+    //     }
+    //     transform.rotation = Quaternion.Euler(0f, currRotation, 0f);
+    // }
 }
