@@ -154,6 +154,9 @@ public class PlayerManager : MonoBehaviour
 
                     FindObjectOfType<DialogueTree>().ChoiceMade(1);
                 }
+
+                FindObjectOfType<DialogueTree>().CloseDialogueTree();
+               
                 ResetCharge();
             }
         }

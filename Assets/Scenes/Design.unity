@@ -5587,6 +5587,7 @@ GameObject:
   - component: {fileID: 385734702}
   - component: {fileID: 385734704}
   - component: {fileID: 385734703}
+  - component: {fileID: 385734705}
   m_Layer: 0
   m_Name: EdgeText
   m_TagString: Untagged
@@ -5610,7 +5611,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2.57}
+  m_AnchoredPosition: {x: 0, y: 8.7}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &385734703
@@ -5747,6 +5748,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &385734705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385734701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ed57967c52645d390a89dcf8f61ba73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AngleMultiplier: 1
+  SpeedMultiplier: 1
+  CurveScale: 1
 --- !u!1 &437937729
 GameObject:
   m_ObjectHideFlags: 0
@@ -20329,8 +20345,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 631348891}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.6673408, y: 2.869025, z: 1.910559}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.68, y: 2.869025, z: -25.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20338,7 +20354,7 @@ Transform:
   - {fileID: 748685702}
   - {fileID: 1471008865}
   - {fileID: 734704221}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1252373817}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &668232070
 GameObject:
@@ -20351,6 +20367,7 @@ GameObject:
   - component: {fileID: 668232071}
   - component: {fileID: 668232073}
   - component: {fileID: 668232072}
+  - component: {fileID: 668232074}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -20374,7 +20391,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 6.98}
+  m_AnchoredPosition: {x: 0, y: 9.4}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &668232072
@@ -20511,6 +20528,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &668232074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668232070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ed57967c52645d390a89dcf8f61ba73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AngleMultiplier: 1
+  SpeedMultiplier: 1
+  CurveScale: 1
 --- !u!1001 &707441128
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20596,7 +20628,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &734704221
 Transform:
   m_ObjectHideFlags: 0
@@ -20625,8 +20657,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parameters:
-    albedo: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 1}
-    meanFreePath: 10.91
+    albedo: {r: 0.3490566, g: 0.3490566, b: 0.3490566, a: 1}
+    meanFreePath: 72
     blendingMode: 4
     priority: 0
     anisotropy: 0
@@ -20676,7 +20708,7 @@ Transform:
   m_GameObject: {fileID: 748685701}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.92, y: -0.359025, z: 23.079441}
+  m_LocalPosition: {x: -0.34, y: 2.75, z: 23.079441}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20709,14 +20741,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 1000000
+  m_Intensity: 23
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
-  m_VolumetricDimmer: 1
-  m_LightUnit: 0
+  m_VolumetricDimmer: 16
+  m_LightUnit: 4
   m_FadeDistance: 50
   m_VolumetricFadeDistance: 10000
   m_AffectDiffuse: 1
@@ -20725,7 +20757,7 @@ MonoBehaviour:
   m_ShapeWidth: 0.5
   m_ShapeHeight: 0.5
   m_AspectRatio: 1
-  m_ShapeRadius: 0.025
+  m_ShapeRadius: 0
   m_SoftnessScale: 1
   m_UseCustomSpotLightShadowCone: 0
   m_CustomSpotLightShadowCone: 30
@@ -20831,8 +20863,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 79577.47
-  m_Range: 9.74
+  m_Intensity: 1048576
+  m_Range: 300
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -20874,7 +20906,7 @@ Light:
   m_LightShadowCasterMode: 2
   m_AreaSize: {x: 0.5, y: 0.5}
   m_BounceIntensity: 1
-  m_ColorTemperature: 3464
+  m_ColorTemperature: 3230
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -36143,6 +36175,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1855741285915758094, guid: f995538644ce7b1458e354b8cf02b59f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 631348892}
     - targetCorrespondingSourceObject: {fileID: 274928939972655339, guid: f995538644ce7b1458e354b8cf02b59f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 668232071}
@@ -36151,6 +36186,11 @@ PrefabInstance:
 --- !u!1 &1252373815 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8190343021746121307, guid: f995538644ce7b1458e354b8cf02b59f, type: 3}
+  m_PrefabInstance: {fileID: 1252373814}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1252373817 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1855741285915758094, guid: f995538644ce7b1458e354b8cf02b59f, type: 3}
   m_PrefabInstance: {fileID: 1252373814}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1276224735
@@ -56406,6 +56446,5 @@ SceneRoots:
   - {fileID: 8621992073183323927}
   - {fileID: 1276224737}
   - {fileID: 1051041864}
-  - {fileID: 631348892}
   - {fileID: 1707692950}
   - {fileID: 208703987}
