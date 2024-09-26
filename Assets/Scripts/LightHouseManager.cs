@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -12,6 +13,9 @@ public class LightHouseManager : MonoBehaviour
     public float duration = 5f;
     private float distance;
     private Vector3 direction;
+
+    [SerializeField]
+    private TextMeshPro tmp;
 
     void Start() {
         movingTriggered = false;
@@ -113,5 +117,12 @@ public class LightHouseManager : MonoBehaviour
         transform.position = target;
         inMotion = false;
         movingTriggered = false;
+    }
+
+    public void SetText(string text)
+    {
+        if (text == null) return;
+
+        tmp.text = text;
     }
 }
