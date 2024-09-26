@@ -170,6 +170,7 @@ public class PlayerManager : MonoBehaviour
             {
                 Debug.Log("PlayerManager: Should be starting a dialogue because charge has been met");
                 // dialogueManager.StartDialogue();
+                GetComponentInChildren<FaceBehavior>().SetMoving();
                 gameManager.SetGameState(GameState.ASKING);
             }
         }
@@ -179,6 +180,7 @@ public class PlayerManager : MonoBehaviour
     {
         currentChargeTime = 0;
         gameManager.SetGameState(GameState.ACTIVE);
+        GetComponentInChildren<FaceBehavior>().ResetMoving();
     }
 
     /// <summary>
