@@ -41,6 +41,12 @@ public class DialogueTree : MonoBehaviour
     //Has all the dialogue nodes that make this system work
     private DialogueManager dialogueManager;
 
+    [SerializeField]
+    private TextMeshPro lighthouseText;
+
+    [SerializeField]
+    private TextMeshPro edgeText;
+
     [Header("Variables")]///////////////////////////////////////////////////////////////////////
 
     //bool to prevent edge cases where multiple dialogue trees could be active at once
@@ -74,6 +80,10 @@ public class DialogueTree : MonoBehaviour
 
     //Enum that tracks the current state of the Dialogue Tree
     private DialogueTreeState currentState;
+
+    //Variable that holds the node currently being judged by the player
+    private DialogueNode currentActiveNode;
+
 
     // Start is called before the first frame update
     void Start()
@@ -122,7 +132,7 @@ public class DialogueTree : MonoBehaviour
         currentState = DialogueTreeState.ACTIVE;
 
         //Make the shader object visible so that the focus is on the dialogue and choices
-        shaderImage.gameObject.SetActive(true);
+        //shaderImage.gameObject.SetActive(true);
 
         //Now that it's active, set isActive to true
         isActive = true;
@@ -151,16 +161,21 @@ public class DialogueTree : MonoBehaviour
             {
                 return false;
             }
+
+            currentActiveNode = currentNode;
         }
 
         //Enabled the passenger's text box and set the text of it to the corresponding node's
-        passengerBox.gameObject.SetActive(true);
+        //passengerBox.gameObject.SetActive(true);
 
-        StartCoroutine(RevealText(currentNode, false, 0));
+        //StartCoroutine(RevealText(currentNode, false, 0));
         //passengerText.SetText(currentNode.passengerText);
 
         //Wait textDelay seconds before showing the choices
         //StartCoroutine(ShowChoiceBoxes(currentNode));
+
+        StartCoroutine(RevealLighthouseText());
+        StartCoroutine(RevealEdgeOfSeaText());
 
         //The dialogue tree did start so return true
         return true;
@@ -198,6 +213,14 @@ public class DialogueTree : MonoBehaviour
         StartCoroutine(RevealText(node, true, index));
     }
 
+    //Different version that uses the current saved node
+    public void ChoiceMade(int index)
+    {
+        passengerManager.AdjustMood(currentActiveNode.choices[index].choiceValue);
+
+        //Function to remove the pop up text;
+    }
+
     //Function to hide the choice buttons
     public void CloseChoiceButtons()
     {
@@ -216,13 +239,20 @@ public class DialogueTree : MonoBehaviour
 
         currentState = DialogueTreeState.INACTIVE;
 
+        /*
         //Hide the non choice gameObjects since choice's should already be hidden
         passengerBox.gameObject.SetActive(false);
         shaderImage.gameObject.SetActive(false);
 
 
         //Tell the game manager that the game state is no longer in the dialogue state
+        */
+
+        lighthouseText.text = string.Empty;
+        edgeText.text = string.Empty;
+
         dialogueManager.FinishDialogue();
+
     }
 
     //Coroutine to display the text in a type writer like fashion, one character by one
@@ -281,6 +311,46 @@ public class DialogueTree : MonoBehaviour
             StartCoroutine(ShowChoiceBoxes(node));
         }
 
+    }
+
+    private IEnumerator RevealLighthouseText()
+    {
+        lighthouseText.text = string.Empty;
+
+        foreach(char c in currentActiveNode.choices[0].choiceText)
+        {
+
+            lighthouseText.text = lighthouseText.text + c;
+
+            if(c == ' ')
+            {
+                yield return new WaitForSeconds(0);
+            }
+            else
+            {
+                yield return new WaitForSeconds(characterDelay);
+            }
+        }
+    }
+
+    private IEnumerator RevealEdgeOfSeaText()
+    {
+        edgeText.text = string.Empty;
+
+        foreach (char c in currentActiveNode.choices[1].choiceText)
+        {
+
+            edgeText.text = edgeText.text + c;
+
+            if (c == ' ')
+            {
+                yield return new WaitForSeconds(0);
+            }
+            else
+            {
+                yield return new WaitForSeconds(characterDelay);
+            }
+        }
     }
 
     //FUNction purely for testing

@@ -98,6 +98,7 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("The player should make decision now.");
             UpdatePlayerRotation();
             CheckDirection();
+            FindObjectOfType<DialogueTree>().StartDialogueTree();
         }
     }
 
@@ -143,11 +144,15 @@ public class PlayerManager : MonoBehaviour
                 {
                     // TODO The player chose lighthouse
                     Debug.Log("The player chose lighthouse.");
+
+                    FindObjectOfType<DialogueTree>().ChoiceMade(0);
                 }
                 else
                 {
                     // TODO The player chose edge
                     Debug.Log("The player chose edge.");
+
+                    FindObjectOfType<DialogueTree>().ChoiceMade(1);
                 }
                 ResetCharge();
             }
