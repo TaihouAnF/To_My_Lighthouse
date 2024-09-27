@@ -7,7 +7,6 @@ public class SettingsManager : MonoBehaviour
 {
 
     private bool motionDisabled;
-    public int curr_idx;
 
     // Start is called before the first frame update
     void Start()
@@ -30,14 +29,5 @@ public class SettingsManager : MonoBehaviour
     public void ChangeScene(int index)
     {
         SceneManager.LoadScene(index);
-    }
-
-
-    /// <summary>
-    /// Load the first level scene. Could use it on a button.
-    /// </summary>
-    public void ChangeSceneFirstLevel()
-    {
-        ChangeScene(0);
     }
 }
