@@ -137,10 +137,6 @@ public class DialogueTree : MonoBehaviour
         //Now that it's active, set isActive to true
         isActive = true;
 
-        // TO DO
-        //Tell the game manager that the game state has become the dialogue state
-        // TO DO
-
         //Declare currentNode so that it can be used in the following statements
         DialogueNode currentNode;
 
@@ -174,8 +170,10 @@ public class DialogueTree : MonoBehaviour
         //Wait textDelay seconds before showing the choices
         //StartCoroutine(ShowChoiceBoxes(currentNode));
 
+        /*
         StartCoroutine(RevealLighthouseText());
         StartCoroutine(RevealEdgeOfSeaText());
+        */
 
         //The dialogue tree did start so return true
         return true;
