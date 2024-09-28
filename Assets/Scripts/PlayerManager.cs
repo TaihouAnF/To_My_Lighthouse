@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -46,9 +45,6 @@ public class PlayerManager : MonoBehaviour
     private float decisionTime;
     private float currDesTime;
 
-    [SerializeField]
-    private TextMeshProUGUI question;
-
     void Start()
     {
 
@@ -65,8 +61,6 @@ public class PlayerManager : MonoBehaviour
         currMoveCd = moveCd;
         facingDir = (lightHouse.transform.position - transform.position).normalized; 
         fillImage = progressBar.fillRect.GetComponent<Image>();
-
-        question.enabled = false;   // Hide the text at the beginning
     }
 
     private void FixedUpdate()
@@ -184,9 +178,6 @@ public class PlayerManager : MonoBehaviour
             {
                 Debug.Log("PlayerManager: Should be starting a dialogue because charge has been met");
                 // dialogueManager.StartDialogue();
-                // TODO: Questions pop up, currently only a text would show up
-                question.enabled = true;
-                GetComponentInChildren<FaceBehavior>().SetMoving();
                 gameManager.SetGameState(GameState.ASKING);
             }
         }
@@ -196,7 +187,21 @@ public class PlayerManager : MonoBehaviour
     {
         currentChargeTime = 0;
         gameManager.SetGameState(GameState.ACTIVE);
-        GetComponentInChildren<FaceBehavior>().ResetMoving();
-        question.enabled = false;
     }
+
+    /// <summary>
+    /// Rotate the vessel by a curtain amount.(Deprecated)
+    /// </summary>
+    /// <param name="rotationAmount">The Amount for the rotation.</param>
+    // private void RotateVessel(float rotationAmount) 
+    // {
+    //     currRotation += rotationAmount;
+    //     currRotation = Mathf.Clamp(currRotation, -10, 10);
+    //     if ((currRotation == -10 && direction == -1) || (currRotation == 10 && direction == -1)) 
+    //     {
+    //         hasDirection = true;
+    //         direction = -direction;
+    //     }
+    //     transform.rotation = Quaternion.Euler(0f, currRotation, 0f);
+    // }
 }
