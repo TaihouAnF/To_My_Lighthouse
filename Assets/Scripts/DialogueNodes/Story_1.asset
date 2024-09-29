@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: Story_1
   m_EditorClassIdentifier: 
   passengerText:
-  - I can't help you. What meaning does my light have if you're so lost?
+  - I can't help you.
+  - What meaning does my light have if you're so lost?
   choices:
   - choiceText: I still need your light.
+    choiceReaction: 
+    isPositive: 1
     choiceValue: 1
-    choiceReaction: 
   - choiceText: I'm not so sure
-    choiceValue: -1
     choiceReaction: 
+    isPositive: 0
+    choiceValue: -1

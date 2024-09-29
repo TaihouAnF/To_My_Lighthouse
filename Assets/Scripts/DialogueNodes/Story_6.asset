@@ -10,18 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d9481496b8b9184b877d1cd3ea338f1, type: 3}
-  m_Name: Story_2
+  m_Name: Story_6
   m_EditorClassIdentifier: 
   passengerText:
-  - Is it even important to go back?
-  - Maybe there's something you need to find here first.
-  - Only you can decide if returning to the light matters.
+  - Our parting is near...
+  - Nothing lasts forever, what are you grasping onto?
+  - Is it the fear of loss?
+  - The uncertainty of what comes next?
   choices:
-  - choiceText: At least I can try
+  - choiceText: The fear of losing
     choiceReaction: 
     isPositive: 1
     choiceValue: 0
-  - choiceText: Perhaps, I'm meant to be here
+  - choiceText: The uncertainty of the future
     choiceReaction: 
     isPositive: 0
     choiceValue: 0

@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d9481496b8b9184b877d1cd3ea338f1, type: 3}
-  m_Name: Story_2
+  m_Name: Story_3
   m_EditorClassIdentifier: 
   passengerText:
-  - Is it even important to go back?
-  - Maybe there's something you need to find here first.
-  - Only you can decide if returning to the light matters.
+  - What is it that you're really afraid of down here?
+  - "Do you think you can control it?\t"
+  - Or is it controlling you?
   choices:
-  - choiceText: At least I can try
+  - choiceText: I'm in control but I can do better.
     choiceReaction: 
     isPositive: 1
     choiceValue: 0
-  - choiceText: Perhaps, I'm meant to be here
+  - choiceText: It overwhelms me.
     choiceReaction: 
-    isPositive: 0
+    isPositive: 1
     choiceValue: 0
