@@ -283,6 +283,8 @@ public class DialogueTree : MonoBehaviour
 
     }
 
+    //private IEnumerator TypewriterText(TextMeshProUGUI tmpUGUI,)
+
     //FUNction purely for testing
     //Turns on the dialogue tree 1 second after starting.
     private IEnumerator TestingFunction()
