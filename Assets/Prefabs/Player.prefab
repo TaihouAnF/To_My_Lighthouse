@@ -1284,11 +1284,10 @@ MonoBehaviour:
   angleCheck: 10
   dialogueChargeTime: 5
   moveCd: 10
-  progressBar: {fileID: 5401462949218094122}
+  progressBar: {fileID: 4885789312834601177}
   lightHouse: {fileID: 0}
   threshold: 0.95
-  decisionTime: 4
-  question: {fileID: 548059829968738323}
+  decisionTime: 10
 --- !u!1001 &2505372671325271851
 PrefabInstance:
   m_ObjectHideFlags: 0
