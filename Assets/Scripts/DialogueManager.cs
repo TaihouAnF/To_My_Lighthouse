@@ -203,19 +203,6 @@ public class DialogueManager : MonoBehaviour
         sequentialIndex--;
     }
 
-    //Function to make sure there are no dialogue nodes in the monologue nodes and vice versa
-    private void CleanArrays()
-    {
-
-        //DialogueNode[] nodes = new DialogueNode;
-        /*
-        foreach(DialogueNode d in dialogueNodes)
-        {
-
-        }
-        */
-    }
-
     //Function that gets the next monologue node
     public MonologueNode GetNextMonologue()
     {
