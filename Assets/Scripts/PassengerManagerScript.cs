@@ -52,10 +52,10 @@ public class PassengerManagerScript : MonoBehaviour
         numWrong = 1;
     } 
 
-    public void AdjustMood(int value)
+    public void AdjustMood(bool positive)
     {
         //Add the value to this currentMood
-        currentMood += value;
+        //currentMood += value;
         
         //Clamp the value so it can't go over the maximum set OR below 0
         Mathf.Clamp(currentMood, 0, maximumMood);
@@ -65,7 +65,7 @@ public class PassengerManagerScript : MonoBehaviour
 
         //Behaviors that will trigger off the adjusted mood
         //If the reaction as positive
-        if(value > 0)
+        if(positive)
         {
             //Move distance towards the player
             lighthouseManager.ShouldMove(distance * numWrong, true);
@@ -82,7 +82,7 @@ public class PassengerManagerScript : MonoBehaviour
             //Revert the index back to the previous so that the player can't lock themselves out
             dialogueManager.RollbackSequentialIndex();
 
-            numWrong++;
+            //numWrong++;
         }
 
         //Debug statement for evaluating the passenger's mood

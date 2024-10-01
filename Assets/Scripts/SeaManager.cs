@@ -3,6 +3,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.HighDefinition;
 
 public class SeaManager : MonoBehaviour
 {
@@ -35,6 +37,21 @@ public class SeaManager : MonoBehaviour
     [SerializeField]
     private float maxCamAmp;
 
+    [SerializeField]
+    private Volume skyVolume;
+
+    [SerializeField]
+    private float minAerosolDensity;
+
+    [SerializeField]
+    private float maxAerosolDensity;
+
+    [SerializeField]
+    private Color minAerosolColor;
+
+    [SerializeField]
+    private Color maxAerosolColor;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +70,7 @@ public class SeaManager : MonoBehaviour
             if (Vector3.Angle(Vector3.forward, playerManager.transform.forward) < maximumAngle)
             {
                 UpdateSeaSettings(Vector3.Angle(Vector3.forward, playerManager.transform.forward));
+                UpdateSkybox(Vector3.Angle(Vector3.forward, playerManager.transform.forward));
             }
         }
     }
@@ -84,5 +102,24 @@ public class SeaManager : MonoBehaviour
         }
 
         FindObjectOfType<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = cA;
+    }
+
+    private void UpdateSkybox(float rotation)
+    {
+        float t = rotation / maximumAngle;
+        float d = maxAerosolDensity * t;
+        Color c = Color.Lerp(minAerosolColor, maxAerosolColor, t);
+
+        if(d < minAerosolDensity) { d = minAerosolDensity; }
+
+        //FindObjectOfType<PhysicallyBasedSky>().aerosolTint.Override(c);
+        //FindObjectOfType<PhysicallyBasedSky>().aerosolDensity.Override(d);
+
+        VolumeProfile volProf = skyVolume.sharedProfile;
+        if(volProf.TryGet<PhysicallyBasedSky>(out var sky))
+        {
+            sky.aerosolDensity.Override(d);
+            sky.aerosolTint.Override(c);
+        }
     }
 }
