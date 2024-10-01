@@ -23,5 +23,5 @@ MonoBehaviour:
     choiceValue: 0
   - choiceText: No, I think there's a different meaning
     choiceReaction: 
-    isPositive: 1
+    isPositive: 0
     choiceValue: 0

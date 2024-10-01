@@ -17,11 +17,11 @@ MonoBehaviour:
   - Do you let others define you?
   - Do you shape who you are?
   choices:
-  - choiceText: Others define me
+  - choiceText: I shape myself
     choiceReaction: 
     isPositive: 1
     choiceValue: 0
-  - choiceText: I shape myself
+  - choiceText: Others define me
     choiceReaction: 
     isPositive: 0
     choiceValue: 0

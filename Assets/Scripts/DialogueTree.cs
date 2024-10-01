@@ -68,6 +68,13 @@ public class DialogueTree : MonoBehaviour
     [SerializeField]
     private KeyCode dialogueKey;
 
+    [Tooltip("Value multiplied by the total length of the sun text box")]
+    [SerializeField]
+    private float characterSize;
+
+    [SerializeField]
+    private Image sunBoxRenderer;
+
     [Header("TESTING")]//////////////////////////////////////////////////////////////////////
 
     [Tooltip("Turn on when testing dialogue, will start the tree after 1 second")]
@@ -344,8 +351,12 @@ public class DialogueTree : MonoBehaviour
 
     private IEnumerator TypewriterTextSun(TextMeshProUGUI tmp)
     {
+
         for (int i = 0; i < currentActiveNode.passengerText.Length; i++)
         {
+
+            Vector3 boxVector = new Vector3(characterSize * currentActiveNode.passengerText[i].Length, characterSize * 2, 1);
+            sunBoxRenderer.transform.localScale = boxVector;
 
             tmp.text = string.Empty;
 
