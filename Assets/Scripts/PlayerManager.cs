@@ -178,6 +178,7 @@ public class PlayerManager : MonoBehaviour
             {
                 Debug.Log("PlayerManager: Should be starting a dialogue because charge has been met");
                 // dialogueManager.StartDialogue();
+                GetComponentInChildren<FaceBehavior>().SetMoving();
                 gameManager.SetGameState(GameState.ASKING);
             }
         }
@@ -186,22 +187,7 @@ public class PlayerManager : MonoBehaviour
     public void ResetCharge()
     {
         currentChargeTime = 0;
+        GetComponentInChildren<FaceBehavior>().ResetMoving();
         gameManager.SetGameState(GameState.ACTIVE);
     }
-
-    /// <summary>
-    /// Rotate the vessel by a curtain amount.(Deprecated)
-    /// </summary>
-    /// <param name="rotationAmount">The Amount for the rotation.</param>
-    // private void RotateVessel(float rotationAmount) 
-    // {
-    //     currRotation += rotationAmount;
-    //     currRotation = Mathf.Clamp(currRotation, -10, 10);
-    //     if ((currRotation == -10 && direction == -1) || (currRotation == 10 && direction == -1)) 
-    //     {
-    //         hasDirection = true;
-    //         direction = -direction;
-    //     }
-    //     transform.rotation = Quaternion.Euler(0f, currRotation, 0f);
-    // }
 }
