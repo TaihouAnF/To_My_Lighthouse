@@ -14,11 +14,6 @@ public struct ChoiceStruct
     public string choiceReaction;
 
     public bool isPositive;
-
-    //Value of the choice that the player makes to the passenger
-    [Header("OLD")]
-    [Tooltip("DEPRECATED")]
-    public int choiceValue;
 }
 
 
