@@ -27,7 +27,7 @@ public class SteeringWheelScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.GetGameState() != GameState.ACTIVE && gameManager.GetGameState() != GameState.ASKING) 
+        if (gameManager.GetGameState() != GameState.ACTIVE && gameManager.GetGameState() != GameState.ASKING && gameManager.GetGameState() != GameState.CHOOSING) 
             return;
         
         if(Input.GetKey(left))

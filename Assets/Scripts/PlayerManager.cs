@@ -95,10 +95,13 @@ public class PlayerManager : MonoBehaviour
         }
         else if (gameManager.GetGameState() == GameState.ASKING) 
         {
-            Debug.Log("The player should make decision now.");
+            UpdatePlayerRotation();
+            //FindObjectOfType<DialogueTree>().StartDialogueTree();
+        }
+        else if (gameManager.GetGameState() == GameState.CHOOSING)
+        {
             UpdatePlayerRotation();
             CheckDirection();
-            //FindObjectOfType<DialogueTree>().StartDialogueTree();
         }
     }
 
@@ -130,7 +133,7 @@ public class PlayerManager : MonoBehaviour
     private void CheckDirection()
     {
         float align = Vector3.Dot(transform.forward, facingDir);
-        if (gameManager.GetGameState() == GameState.ASKING && ((align > 0 && align > threshold) || (align < 0 && align < -threshold))) // The player is facing the lighthouse
+        if (gameManager.GetGameState() == GameState.CHOOSING && ((align > 0 && align > threshold) || (align < 0 && align < -threshold))) // The player is facing the lighthouse
         {
             // TODO: the player is facing the lighthouse/the edge
             progressBar.gameObject.SetActive(true);
@@ -143,14 +146,12 @@ public class PlayerManager : MonoBehaviour
                 if (align > 0) 
                 {
                     // TODO The player chose lighthouse
-                    Debug.Log("The player chose lighthouse.");
 
                     FindObjectOfType<DialogueTree>().ChoiceMade(0);
                 }
                 else
                 {
                     // TODO The player chose edge
-                    Debug.Log("The player chose edge.");
 
                     FindObjectOfType<DialogueTree>().ChoiceMade(1);
                 }
@@ -179,7 +180,7 @@ public class PlayerManager : MonoBehaviour
                 Debug.Log("PlayerManager: Should be starting a dialogue because charge has been met");
                 dialogueManager.StartDialogue();
                 GetComponentInChildren<FaceBehavior>().SetMoving();
-                //gameManager.SetGameState(GameState.ASKING);
+                gameManager.SetGameState(GameState.ASKING);
             }
         }
     }
@@ -187,7 +188,8 @@ public class PlayerManager : MonoBehaviour
     public void ResetCharge()
     {
         currentChargeTime = 0;
+        currDesTime = 0;
         GetComponentInChildren<FaceBehavior>().ResetMoving();
-        //gameManager.SetGameState(GameState.ACTIVE);
+        gameManager.SetGameState(GameState.ACTIVE);
     }
 }
