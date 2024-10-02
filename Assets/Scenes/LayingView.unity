@@ -156,7 +156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -540, y: -0.00054409}
+  m_AnchoredPosition: {x: -540, y: 13}
   m_SizeDelta: {x: 1080, y: 580.72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &274419042
@@ -459,7 +459,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 540.0002, y: 0.0005556777}
+  m_AnchoredPosition: {x: 540.0002, y: 13}
   m_SizeDelta: {x: 1080, y: 580.72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &608497657
@@ -681,7 +681,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.000009032694}
+  m_AnchoredPosition: {x: 0, y: 13}
   m_SizeDelta: {x: 1080, y: 580.72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &888478839
@@ -1273,9 +1273,17 @@ PrefabInstance:
       propertyPath: sceneController
       value: 
       objectReference: {fileID: 1550706536}
+    - target: {fileID: 1484941621914382182, guid: cc6511268a697284b9d24946cd30b3f7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3670619436885371060, guid: cc6511268a697284b9d24946cd30b3f7, type: 3}
       propertyPath: m_Name
       value: AnimationManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3670619436885371060, guid: cc6511268a697284b9d24946cd30b3f7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6703840843903265228, guid: cc6511268a697284b9d24946cd30b3f7, type: 3}
       propertyPath: m_LocalPosition.x
