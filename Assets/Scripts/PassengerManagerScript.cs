@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PassengerManagerScript : MonoBehaviour
@@ -30,6 +31,10 @@ public class PassengerManagerScript : MonoBehaviour
 
     private int numNeg;
 
+    // A counter for positive moves
+    private int numCnt;
+    [SerializeField] private float duration;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +51,16 @@ public class PassengerManagerScript : MonoBehaviour
         numWrong = 1;
 
         numNeg = 0;
-    } 
+        numCnt = 0;
+    }
+
+    void Update()
+    {
+        if (numCnt == dialogueManager.GetNumNodes())
+        {
+            FinishingGame();
+        }
+    }
 
     public void AdjustMood(bool positive)
     {
@@ -59,6 +73,7 @@ public class PassengerManagerScript : MonoBehaviour
         {
             //Move distance towards the player
             lighthouseManager.ShouldMove(distance * numWrong, true);
+            ++numCnt;
 
             //Got the correct choice, so reset numWrong back to 1
             numWrong = 1;
@@ -79,5 +94,69 @@ public class PassengerManagerScript : MonoBehaviour
                 demonMan.SetActive(true);
             }
         }
+    }
+
+    public void FinishingGame()
+    {
+        gameManager.SetGameState(GameState.FINISHING);
+        StartCoroutine(StartDisappear());
+        StartCoroutine(StartShowing());
+    }
+
+    /// <summary>
+    /// Make lighthouse sprite to disappear
+    /// </summary>
+    /// <returns>IEnumerator in System</returns>
+    private IEnumerator StartDisappear()
+    {
+        var clr = lighthouseManager.lighthouse.color;
+        float startAlpha = clr.a;
+        float timeElapsed = 0;
+        while (timeElapsed < duration) {
+            timeElapsed += Time.deltaTime;
+            float newA = Mathf.Lerp(startAlpha, 0.0f, timeElapsed / duration);
+            clr.a = newA;
+            lighthouseManager.lighthouse.color = clr;
+            yield return null;
+        }
+        clr.a = 0.0f;
+        lighthouseManager.lighthouse.color = clr;
+        // Since it's gone, we can deactivate it.
+        lighthouseManager.lighthouse.gameObject.SetActive(false);
+    }
+
+    private IEnumerator StartShowing()
+    {
+        lighthouseManager.mirror.gameObject.SetActive(true);
+        var clr = lighthouseManager.mirror.color;
+        float startAlpha = clr.a;
+        float timeElapsed = 0;
+        while (timeElapsed < duration)
+        {
+            timeElapsed += Time.deltaTime;
+            float newA = Mathf.Lerp(startAlpha, 1f, timeElapsed / duration);
+            clr.a = newA;
+            lighthouseManager.mirror.color = clr;
+            yield return null;
+        }
+        clr.a = 1f;
+        lighthouseManager.mirror.color = clr;
+
+        yield return new WaitForSeconds(1f);
+
+        lighthouseManager.flowers.gameObject.SetActive(true);
+        clr = lighthouseManager.flowers.color;
+        startAlpha = clr.a;
+        timeElapsed = 0;
+        while (timeElapsed < duration) 
+        {
+            timeElapsed += Time.deltaTime;
+            float newA = Mathf.Lerp(startAlpha, 1f, timeElapsed / duration);
+            clr.a = newA;
+            lighthouseManager.flowers.color = clr;
+            yield return null;
+        }
+        clr.a = 1f;
+        lighthouseManager.flowers.color = clr;
     }
 }

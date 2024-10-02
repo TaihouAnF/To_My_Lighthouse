@@ -13,6 +13,9 @@ public class LightHouseManager : MonoBehaviour
     public float duration = 5f;
     private float distance;
     private Vector3 direction;
+    public SpriteRenderer lighthouse;
+    public SpriteRenderer mirror;
+    public SpriteRenderer flowers;
 
     [SerializeField]
     private TextMeshPro tmp;
