@@ -91,7 +91,9 @@ public class PassengerManagerScript : MonoBehaviour
 
             if(numNeg >= 3)
             {
-                demonMan.SetActive(true);
+                //demonMan.GetComponent<Animator>().Play("DemonFlash");
+                demonMan.GetComponent<Animation>().Rewind();
+                demonMan.GetComponent<Animation>().Play("DemonFlash");
             }
         }
     }
