@@ -6148,7 +6148,7 @@ MonoBehaviour:
   tmpText: {fileID: 316099329}
   noiseTexture: {fileID: 2800000, guid: 351dd4adad93b70429052e8f7afe391d, type: 3}
   fadeDuration: 2
-  delay: 1.5
+  delay: 0.5
 --- !u!114 &316099329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36314,7 +36314,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: -5.0000153, y: 4}
-  m_SizeDelta: {x: 134.36, y: 32.5}
+  m_SizeDelta: {x: 122, y: 32.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1228461279
 MonoBehaviour:
@@ -36407,7 +36407,7 @@ MonoBehaviour:
   tmpText: {fileID: 1237045076}
   noiseTexture: {fileID: 2800000, guid: 351dd4adad93b70429052e8f7afe391d, type: 3}
   fadeDuration: 2
-  delay: 1.5
+  delay: 0.5
 --- !u!114 &1237045076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41454,8 +41454,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -5.0000153, y: 5}
-  m_SizeDelta: {x: 73.16, y: 35}
+  m_AnchoredPosition: {x: -5.0000153, y: 4}
+  m_SizeDelta: {x: 64, y: 35}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1351600925
 MonoBehaviour:
@@ -41647,7 +41647,7 @@ MonoBehaviour:
   tmpText: {fileID: 1435852633}
   noiseTexture: {fileID: 2800000, guid: 351dd4adad93b70429052e8f7afe391d, type: 3}
   fadeDuration: 2
-  delay: 1.5
+  delay: 0.5
 --- !u!114 &1435852633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41668,7 +41668,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quit
+  m_text: Exit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 40e89784a5e129746b8803b1197791d4, type: 2}
   m_sharedMaterial: {fileID: -1383360313018233961, guid: 40e89784a5e129746b8803b1197791d4, type: 2}
@@ -41919,7 +41919,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: -5.0000153, y: 3}
-  m_SizeDelta: {x: 70, y: 30}
+  m_SizeDelta: {x: 66, y: 30}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1631571605
 MonoBehaviour:
@@ -56701,7 +56701,7 @@ GameObject:
   - component: {fileID: 2020702308}
   - component: {fileID: 2020702306}
   m_Layer: 5
-  m_Name: Button_Quit
+  m_Name: Button_Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
