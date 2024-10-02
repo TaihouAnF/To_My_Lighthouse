@@ -179,6 +179,10 @@ public class DialogueTree : MonoBehaviour
     {
         passengerManager.AdjustMood(currentActiveNode.choices[index].isPositive);
 
+        passengerText.text = string.Empty;
+        lighthouseText.text = string.Empty;
+        edgeText.text = string.Empty;
+
         //Function to remove the pop up text;
     }
 
@@ -225,6 +229,8 @@ public class DialogueTree : MonoBehaviour
         }
 
         yield return new WaitForSeconds(textDelay);
+
+        FindObjectOfType<GameManager>().SetGameState(GameState.ASKING);
 
         StartCoroutine(TypewriterTextChoice(lighthouseText, 0));
         StartCoroutine(TypewriterTextChoice(edgeText, 1));

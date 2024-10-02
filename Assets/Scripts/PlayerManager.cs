@@ -98,7 +98,7 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("The player should make decision now.");
             UpdatePlayerRotation();
             CheckDirection();
-            FindObjectOfType<DialogueTree>().StartDialogueTree();
+            //FindObjectOfType<DialogueTree>().StartDialogueTree();
         }
     }
 
@@ -177,9 +177,9 @@ public class PlayerManager : MonoBehaviour
             if(currentChargeTime >= dialogueChargeTime)
             {
                 Debug.Log("PlayerManager: Should be starting a dialogue because charge has been met");
-                // dialogueManager.StartDialogue();
+                dialogueManager.StartDialogue();
                 GetComponentInChildren<FaceBehavior>().SetMoving();
-                gameManager.SetGameState(GameState.ASKING);
+                //gameManager.SetGameState(GameState.ASKING);
             }
         }
     }

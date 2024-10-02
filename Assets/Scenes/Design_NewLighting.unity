@@ -25861,7 +25861,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 548059829968738323, guid: e2171c255a8d40444b22417503995905, type: 3}
       propertyPath: m_text
-      value: Test
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 548059829968738323, guid: e2171c255a8d40444b22417503995905, type: 3}
       propertyPath: m_margin.x
