@@ -6,9 +6,11 @@ public class TextBurnInController : MonoBehaviour
     public TextMeshProUGUI tmpText;        // TextMeshPro对象
     public Texture2D noiseTexture;         // 噪声纹理
     public float fadeDuration = 2f;        // 渐入时间
+    public float delay = 1f;               // 延迟时间
 
     private Material textMaterial;         // 动态创建的材质
     private float fadeValue = 0f;          // 当前Fade值
+    private float timer = 0f;              // 计时器
 
     void Start()
     {
@@ -42,12 +44,21 @@ public class TextBurnInController : MonoBehaviour
         textMaterial.SetFloat("_Fade", 0f);  // 初始为完全透明
 
         // 将材质应用到TextMeshPro
-        tmpText.fontSharedMaterial = textMaterial;
+        tmpText.fontMaterial = textMaterial;
     }
 
     void Update()
     {
-        // 渐进式增加Fade值，实现逐渐显现效果
+        // 计时器增加
+        timer += Time.deltaTime;
+
+        // 如果延迟时间尚未结束，直接返回，不开始渐入
+        if (timer < delay)
+        {
+            return;
+        }
+
+        // 开始渐入效果
         if (fadeValue < 1f)
         {
             fadeValue += Time.deltaTime / fadeDuration;

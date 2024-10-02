@@ -2,21 +2,21 @@ Shader "Custom/TextBurnInHDRP"
 {
     Properties
     {
-        _MainTex ("Font Texture", 2D) = "white" {}      // 字体纹理
-        _NoiseTex ("Noise Texture", 2D) = "white" {}    // 噪声纹理，用于控制显现效果
-        _Fade ("Fade", Range(0,1)) = 0.0               // 控制渐隐渐显的参数
+        _MainTex ("Font Texture", 2D) = "white" {}         // 字体纹理
+        _NoiseTex ("Noise Texture", 2D) = "white" {}       // 噪声纹理
+        _Fade ("Fade", Range(0,1)) = 0.0                  // 渐入控制
     }
 
     SubShader
     {
         Tags { "RenderPipeline" = "HDRenderPipeline" "RenderType" = "Transparent" }
-        
+
         Pass
         {
             Name "ForwardLit"
             Tags { "LightMode" = "Forward" }
-            
-            Blend SrcAlpha OneMinusSrcAlpha
+
+            Blend SrcAlpha OneMinusSrcAlpha  // 标准透明度混合模式
             Cull Off
             ZWrite Off
             
@@ -28,6 +28,7 @@ Shader "Custom/TextBurnInHDRP"
             sampler2D _MainTex;
             sampler2D _NoiseTex;
             float _Fade;
+            float4 _Color;  // 从 TextMeshPro 材质传入的颜色
 
             struct appdata
             {
@@ -52,17 +53,17 @@ Shader "Custom/TextBurnInHDRP"
             float4 frag(v2f i) : SV_Target
             {
                 // 采样字体纹理和噪声纹理
-                float4 fontColor = tex2D(_MainTex, i.uv);
-                float noise = tex2D(_NoiseTex, i.uv).r;
+                float4 fontTexColor = tex2D(_MainTex, i.uv);   // 字体的纹理颜色
+                float noise = tex2D(_NoiseTex, i.uv).r;        // 噪声值
 
-                // 通过噪声纹理和Fade值控制透明度
-                float alpha = smoothstep(_Fade + 0.01, _Fade - 0.01, noise);
+                // 使用 Fade 值和噪声控制透明度
+                float alpha = smoothstep(_Fade + 0.1, _Fade - 0.1, noise);
 
-                // 将字体的透明度与噪声纹理的控制相结合
-                alpha *= fontColor.a;
+                // 将透明度应用到字体纹理
+                float finalAlpha = fontTexColor.a * alpha;
 
-                // 返回带有透明度的颜色
-                return float4(fontColor.rgb, alpha);
+                // 最终颜色是传入的颜色乘以字体纹理的颜色
+                return float4(_Color.rgb * fontTexColor.rgb, finalAlpha);
             }
             ENDHLSL
         }
