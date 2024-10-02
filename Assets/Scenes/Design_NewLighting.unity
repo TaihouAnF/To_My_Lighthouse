@@ -55972,17 +55972,9 @@ PrefabInstance:
       propertyPath: sceneController
       value: 
       objectReference: {fileID: 1043974}
-    - target: {fileID: 2895297272783023803, guid: cc6511268a697284b9d24946cd30b3f7, type: 3}
-      propertyPath: m_SortingOrder
-      value: 99
-      objectReference: {fileID: 0}
     - target: {fileID: 3670619436885371060, guid: cc6511268a697284b9d24946cd30b3f7, type: 3}
       propertyPath: m_Name
       value: AnimationManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 3670619436885371060, guid: cc6511268a697284b9d24946cd30b3f7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6703840843903265228, guid: cc6511268a697284b9d24946cd30b3f7, type: 3}
       propertyPath: m_LocalPosition.x

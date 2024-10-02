@@ -1041,7 +1041,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1634313435
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1331,6 +1331,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 655953228930232646, guid: 674ec8f44256e754eaf2b4d0bc2ae1e6, type: 3}
+      propertyPath: cooldown
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 655953228930232646, guid: 674ec8f44256e754eaf2b4d0bc2ae1e6, type: 3}
       propertyPath: backGround
       value: 
       objectReference: {fileID: 888478837}
@@ -1338,6 +1342,10 @@ PrefabInstance:
       propertyPath: blanketLeft
       value: 
       objectReference: {fileID: 274419040}
+    - target: {fileID: 655953228930232646, guid: 674ec8f44256e754eaf2b4d0bc2ae1e6, type: 3}
+      propertyPath: movingSpeed
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 655953228930232646, guid: 674ec8f44256e754eaf2b4d0bc2ae1e6, type: 3}
       propertyPath: blanketRight
       value: 
