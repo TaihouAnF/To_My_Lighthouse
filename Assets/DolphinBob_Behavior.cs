@@ -25,6 +25,15 @@ public class DolphinBob_Behavior : MonoBehaviour
     [SerializeField]
     private float maxDistance;
 
+    [SerializeField]
+    private float maxEulerAngles;
+
+    [SerializeField]
+    private float minEulerAngles;
+
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,6 +73,12 @@ public class DolphinBob_Behavior : MonoBehaviour
         newPos.y = Mathf.Lerp(minHeight, maxHeight, t);
 
         transform.position = newPos;
+
+        Vector3 euler = spriteRenderer.transform.rotation.eulerAngles;
+
+        euler.z = Mathf.Lerp(minEulerAngles, maxEulerAngles, t);
+
+        spriteRenderer.transform.rotation = Quaternion.Euler(euler);
     }
 
     private void CheckDistance()
