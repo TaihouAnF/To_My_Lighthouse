@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.HighDefinition;
 
 public class LighthouseLightBehavior : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class LighthouseLightBehavior : MonoBehaviour
     private float maxIntensity;
 
     [SerializeField]
-    private Light lightLight;
+    private HDAdditionalLightData lightLight;
 
     [SerializeField]
     private float startingDistance;
@@ -38,11 +39,15 @@ public class LighthouseLightBehavior : MonoBehaviour
         {
             float t = hitInfo.distance / startingDistance;
 
-            Debug.Log(hitInfo.distance);
+            //Debug.Log(hitInfo.distance);
 
-            lightLight.intensity = Mathf.Lerp(0, maxIntensity, t);
+            lightLight.intensity = Mathf.Lerp(maxIntensity, 0, t);
 
-            transform.position = Vector3.Lerp(startHeight, minHeight, t);
+            float y = Mathf.Lerp(startHeight.y, minHeight.y, t);
+
+            Vector3 temp = transform.position;
+            temp.y = y;
+            transform.position = temp;
         }
     }
 }
