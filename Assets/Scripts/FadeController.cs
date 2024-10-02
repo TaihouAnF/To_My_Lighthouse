@@ -4,14 +4,15 @@ using UnityEngine.SceneManagement;
 public class FadeController : MonoBehaviour
 {
     public Animator animator;
+    [SerializeField] private SceneController sceneController;
 
     public void StartFading()
     {
         animator.SetTrigger("FadeOut");
     }
 
-    public void ChangeScene(int index) 
+    public void ChangeScene() 
     {
-        SceneManager.LoadScene(index);
+       sceneController.ChangeNextScene();
     }
 }

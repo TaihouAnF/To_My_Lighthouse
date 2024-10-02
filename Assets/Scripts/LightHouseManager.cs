@@ -13,6 +13,9 @@ public class LightHouseManager : MonoBehaviour
     public float duration = 5f;
     private float distance;
     private Vector3 direction;
+    public SpriteRenderer lighthouse;
+    public SpriteRenderer mirror;
+    public SpriteRenderer flowers;
 
     [SerializeField]
     private TextMeshPro tmp;
@@ -28,15 +31,6 @@ public class LightHouseManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if (Vector3.Distance(player.transform.position, transform.position) < 0.00001f) return;
-        // if (Input.GetKey(KeyCode.V))    // Getting Key is just for debugging
-        // {
-        //     MoveAwayFromTargetAuto();   // Debug purpose
-        // }
-        // else 
-        // {
-        //     MoveTowardsTargetAuto();    // Debug purpose
-        // }
         if (movingTriggered && !inMotion) 
         {
             StartCoroutine(MoveLightHouse());
