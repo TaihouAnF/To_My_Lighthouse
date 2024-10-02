@@ -79,6 +79,8 @@ public class DialogueTree : MonoBehaviour
     //Variable that holds the node currently being judged by the player
     private DialogueNode currentActiveNode;
 
+    private bool isOver;
+
 
     // Start is called before the first frame update
     void Start()
@@ -102,6 +104,8 @@ public class DialogueTree : MonoBehaviour
             StartCoroutine(TestingFunction());
         }
 
+        isOver = false;
+
     }
 
     void Update()
@@ -117,7 +121,7 @@ public class DialogueTree : MonoBehaviour
     public bool StartDialogueTree()
     {
         //Make sure that it hasn't already activated to prevent weird behavior
-        if (isActive)
+        if (isActive || isOver)
         {
             Debug.Log("Dialogue Tree: Already in progress, aborting start.");
             //The dialogue tree didn't start so return false
@@ -150,6 +154,7 @@ public class DialogueTree : MonoBehaviour
             currentActiveNode = currentNode;
         }
 
+        StopCoroutine(TypewriterTextSun(passengerText));
         StartCoroutine(TypewriterTextSun(passengerText));
 
         //The dialogue tree did start so return true
@@ -162,6 +167,11 @@ public class DialogueTree : MonoBehaviour
     {
         //Adjust the value of the passenger's mood based on the choice made
         passengerManager.AdjustMood(node.choices[index].isPositive);
+
+        if(currentActiveNode.isFinal)
+        {
+            isOver = true;
+        }
     }
 
     //Different version that uses the current saved node

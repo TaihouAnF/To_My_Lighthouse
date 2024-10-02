@@ -20,8 +20,7 @@ MonoBehaviour:
   - choiceText: Yes
     choiceReaction: 
     isPositive: 1
-    choiceValue: 0
   - choiceText: No
     choiceReaction: 
     isPositive: 0
-    choiceValue: 0
+  isFinal: 1

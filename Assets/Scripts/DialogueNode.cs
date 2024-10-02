@@ -29,4 +29,5 @@ public class DialogueNode : ScriptableObject
     [SerializeField]
     public ChoiceStruct[] choices;
 
+    public bool isFinal;
 }
