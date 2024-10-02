@@ -10,29 +10,16 @@ public class BackGoundController : MonoBehaviour
     [SerializeField] private float movingSpeed;
 
     [SerializeField] private float cooldown;
-    // private float actualCd;
+    public AudioSource source;
 
     void Start()
     {
+        if (!source.isPlaying) source.Play();
         StartCoroutine(StartAnimation(cooldown));
     }
 
-    // void Update()
-    // {
-        
-    //     if (actualCd >= cooldown) 
-    //     {
-    //         Debug.Log("now");
-    //         // StartCoroutine(StartAnimation());
-    //     }
-    //     else 
-    //     {
-    //         actualCd += Time.deltaTime;
-    //         Debug.Log(actualCd);
-    //     }
-    // }
-
     public IEnumerator StartAnimation(float amount) {
+
         yield return new WaitForSeconds(amount);
         while (Vector3.Distance(blanketLeft.transform.position, backGround.transform.position) > 0.1f)
         {
@@ -45,7 +32,6 @@ public class BackGoundController : MonoBehaviour
 
     public void Testing() 
     {
-        Debug.Log("SHOULD GO");
         StartCoroutine(StartAnimation(0));
     }
 }

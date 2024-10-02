@@ -1339,9 +1339,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 655953228930232646, guid: 674ec8f44256e754eaf2b4d0bc2ae1e6, type: 3}
-      propertyPath: cooldown
-      value: 5
-      objectReference: {fileID: 0}
+      propertyPath: source
+      value: 
+      objectReference: {fileID: 710386878367886684}
     - target: {fileID: 655953228930232646, guid: 674ec8f44256e754eaf2b4d0bc2ae1e6, type: 3}
       propertyPath: backGround
       value: 
@@ -1350,10 +1350,6 @@ PrefabInstance:
       propertyPath: blanketLeft
       value: 
       objectReference: {fileID: 274419040}
-    - target: {fileID: 655953228930232646, guid: 674ec8f44256e754eaf2b4d0bc2ae1e6, type: 3}
-      propertyPath: movingSpeed
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 655953228930232646, guid: 674ec8f44256e754eaf2b4d0bc2ae1e6, type: 3}
       propertyPath: blanketRight
       value: 
@@ -1411,6 +1407,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 674ec8f44256e754eaf2b4d0bc2ae1e6, type: 3}
+--- !u!82 &710386878367886684 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 498474308718808591, guid: 674ec8f44256e754eaf2b4d0bc2ae1e6, type: 3}
+  m_PrefabInstance: {fileID: 710386878367886682}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
