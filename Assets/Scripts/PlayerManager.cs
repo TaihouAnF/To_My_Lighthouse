@@ -95,7 +95,6 @@ public class PlayerManager : MonoBehaviour
         }
         else if (gameManager.GetGameState() == GameState.ASKING) 
         {
-            Debug.Log("The player should make decision now.");
             UpdatePlayerRotation();
             //FindObjectOfType<DialogueTree>().StartDialogueTree();
         }
@@ -147,14 +146,12 @@ public class PlayerManager : MonoBehaviour
                 if (align > 0) 
                 {
                     // TODO The player chose lighthouse
-                    Debug.Log("The player chose lighthouse.");
 
                     FindObjectOfType<DialogueTree>().ChoiceMade(0);
                 }
                 else
                 {
                     // TODO The player chose edge
-                    Debug.Log("The player chose edge.");
 
                     FindObjectOfType<DialogueTree>().ChoiceMade(1);
                 }
@@ -191,6 +188,7 @@ public class PlayerManager : MonoBehaviour
     public void ResetCharge()
     {
         currentChargeTime = 0;
+        currDesTime = 0;
         GetComponentInChildren<FaceBehavior>().ResetMoving();
         gameManager.SetGameState(GameState.ACTIVE);
     }
