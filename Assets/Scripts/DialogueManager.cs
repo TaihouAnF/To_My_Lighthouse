@@ -36,6 +36,14 @@ public class DialogueManager : MonoBehaviour
     [SerializeField]
     private GameObject monoPrefab;
 
+    [SerializeField]
+    private AudioSource audioSource;
+
+    [SerializeField]
+    private AudioClip[] audioClips;
+
+    private int audioIndex;
+
     private void Start()
     {
 
@@ -46,6 +54,8 @@ public class DialogueManager : MonoBehaviour
         dialogueTree = FindObjectOfType<DialogueTree>();
 
         gameManager = FindObjectOfType<GameManager>();
+
+        audioIndex = 0;
 
         //Set the array to be the size of the dialogueNode array
         usedIndices = new bool[dialogueNodes.Length];
@@ -64,6 +74,13 @@ public class DialogueManager : MonoBehaviour
         // gameManager.SetGameState(GameState.PAUSED);
 
         dialogueTree.StartDialogueTree();
+
+        if (audioIndex < audioClips.Length)
+        {
+            audioSource.clip = audioClips[audioIndex];
+
+            audioIndex++;        
+        }
 
         FindObjectOfType<PlayerManager>().ResetCharge();
     }
