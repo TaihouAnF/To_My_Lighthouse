@@ -99,30 +99,7 @@ public class PassengerManagerScript : MonoBehaviour
     public void FinishingGame()
     {
         gameManager.SetGameState(GameState.FINISHING);
-        StartCoroutine(StartDisappear());
         StartCoroutine(StartShowing());
-    }
-
-    /// <summary>
-    /// Make lighthouse sprite to disappear
-    /// </summary>
-    /// <returns>IEnumerator in System</returns>
-    private IEnumerator StartDisappear()
-    {
-        var clr = lighthouseManager.lighthouse.color;
-        float startAlpha = clr.a;
-        float timeElapsed = 0;
-        while (timeElapsed < duration) {
-            timeElapsed += Time.deltaTime;
-            float newA = Mathf.Lerp(startAlpha, 0.0f, timeElapsed / duration);
-            clr.a = newA;
-            lighthouseManager.lighthouse.color = clr;
-            yield return null;
-        }
-        clr.a = 0.0f;
-        lighthouseManager.lighthouse.color = clr;
-        // Since it's gone, we can deactivate it.
-        lighthouseManager.lighthouse.gameObject.SetActive(false);
     }
 
     private IEnumerator StartShowing()
@@ -141,7 +118,7 @@ public class PassengerManagerScript : MonoBehaviour
         }
         clr.a = 1f;
         lighthouseManager.mirror.color = clr;
-
+        lighthouseManager.lighthouse.gameObject.SetActive(false);
         yield return new WaitForSeconds(1f);
 
         lighthouseManager.flowers.gameObject.SetActive(true);

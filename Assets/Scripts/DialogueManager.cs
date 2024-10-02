@@ -129,7 +129,7 @@ public class DialogueManager : MonoBehaviour
     public DialogueNode GetSequentialDialogueNode()
     {
         //Make sure that a node actually exists
-        if (dialogueNodes[sequentialIndex] != null)
+        if (sequentialIndex >= dialogueNodes.Length || dialogueNodes[sequentialIndex] != null)
         {
             //Increment the index for later
             sequentialIndex++;

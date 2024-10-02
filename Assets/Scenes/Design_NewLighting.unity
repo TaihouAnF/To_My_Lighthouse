@@ -5426,6 +5426,10 @@ PrefabInstance:
       propertyPath: demonMan
       value: 
       objectReference: {fileID: 1556464696}
+    - target: {fileID: 6258130520466190791, guid: e629664fa914cce46bb4db1feed3762c, type: 3}
+      propertyPath: duration
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -35719,6 +35723,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 274928939972655339, guid: f995538644ce7b1458e354b8cf02b59f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1855741285915758094, guid: f995538644ce7b1458e354b8cf02b59f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -35759,18 +35767,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2117842643696692629, guid: f995538644ce7b1458e354b8cf02b59f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365520457519993312, guid: f995538644ce7b1458e354b8cf02b59f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3323866888390325970, guid: f995538644ce7b1458e354b8cf02b59f, type: 3}
-      propertyPath: m_Color.a
-      value: 0
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3463957522150249320, guid: f995538644ce7b1458e354b8cf02b59f, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 908038540}
-    - target: {fileID: 7561842197138135548, guid: f995538644ce7b1458e354b8cf02b59f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 6214478992536923060, guid: f995538644ce7b1458e354b8cf02b59f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6214478992536923060, guid: f995538644ce7b1458e354b8cf02b59f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6421220575780789130, guid: f995538644ce7b1458e354b8cf02b59f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7817ff06b730345459f51d49efe054a3, type: 2}
     - target: {fileID: 8190343021746121307, guid: f995538644ce7b1458e354b8cf02b59f, type: 3}
       propertyPath: m_Name
       value: LighthouseObject
@@ -55948,6 +55972,10 @@ PrefabInstance:
       propertyPath: sceneController
       value: 
       objectReference: {fileID: 1043974}
+    - target: {fileID: 2895297272783023803, guid: cc6511268a697284b9d24946cd30b3f7, type: 3}
+      propertyPath: m_SortingOrder
+      value: 99
+      objectReference: {fileID: 0}
     - target: {fileID: 3670619436885371060, guid: cc6511268a697284b9d24946cd30b3f7, type: 3}
       propertyPath: m_Name
       value: AnimationManager
