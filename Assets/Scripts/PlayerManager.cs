@@ -44,6 +44,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private float decisionTime;
     private float currDesTime;
+    public AudioSource wood;
 
     void Start()
     {
@@ -115,11 +116,13 @@ public class PlayerManager : MonoBehaviour
             float rotationAmount = horizontalInput * playerRotateSpeed * Time.deltaTime;
             transform.Rotate(Vector3.up, rotationAmount);
             currMoveCd = moveCd;
+            if (!wood.isPlaying) wood.Play();
         }
         else if (!controlling && currMoveCd <= 0)
         {
             float rotationAmount = direction * vesselRotateSpeed * Time.deltaTime;
             transform.Rotate(Vector3.up, rotationAmount);
+            if (!wood.isPlaying) wood.Play();
         }
         else 
         {
