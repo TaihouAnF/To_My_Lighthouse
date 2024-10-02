@@ -84,15 +84,15 @@ MonoBehaviour:
       supportFabricConvolution: 0
       maxDirectionalLightsOnScreen: 16
       maxPunctualLightsOnScreen: 512
-      maxAreaLightsOnScreen: 64
+      maxAreaLightsOnScreen: 128
       maxCubeReflectionOnScreen: 32
       maxPlanarReflectionOnScreen: 8
       maxDecalsOnScreen: 512
-      maxLightsPerClusterCell: 8
+      maxLightsPerClusterCell: 16
       maxLocalVolumetricFogSize: 0
       maxLocalVolumetricFogOnScreen: 256
     hdShadowInitParams:
-      maxShadowRequests: 128
+      maxShadowRequests: 256
       directionalShadowsDepthBits: 32
       shadowFilteringQuality: 1
       areaShadowFilteringQuality: 0
