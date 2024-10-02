@@ -52,17 +52,21 @@ public class SeaManager : MonoBehaviour
     [SerializeField]
     private Color maxAerosolColor;
 
+    [SerializeField]
+    private bool shouldPause;
+
     // Start is called before the first frame update
     void Start()
     {
         seaMat = gameSea.GetComponent<MeshRenderer>().material;
         playerManager = FindObjectOfType<PlayerManager>();
+        shouldPause = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerManager != null)
+        if (playerManager != null && !shouldPause)
         {
 
             //Debug.Log(Vector3.Angle(Vector3.forward, playerManager.transform.forward));
@@ -121,5 +125,12 @@ public class SeaManager : MonoBehaviour
             sky.aerosolDensity.Override(d);
             sky.aerosolTint.Override(c);
         }
+    }
+
+    public void PauseSea()
+    {
+        shouldPause = true;
+
+        seaMat.SetFloat("_Frequency", 0);
     }
 }

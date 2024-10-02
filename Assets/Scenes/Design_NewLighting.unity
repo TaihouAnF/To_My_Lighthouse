@@ -26983,6 +26983,10 @@ PrefabInstance:
       value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 3264865188389965017, guid: e2171c255a8d40444b22417503995905, type: 3}
+      propertyPath: wood
+      value: 
+      objectReference: {fileID: 517444434}
+    - target: {fileID: 3264865188389965017, guid: e2171c255a8d40444b22417503995905, type: 3}
       propertyPath: moveCd
       value: 10
       objectReference: {fileID: 0}
@@ -48585,7 +48589,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!199 &1707692948
 ParticleSystemRenderer:
   serializedVersion: 6
