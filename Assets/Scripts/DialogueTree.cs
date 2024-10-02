@@ -231,10 +231,11 @@ public class DialogueTree : MonoBehaviour
 
         yield return new WaitForSeconds(textDelay);
 
-        FindObjectOfType<GameManager>().SetGameState(GameState.ASKING);
+        //FindObjectOfType<GameManager>().SetGameState(GameState.CHOOSING);
 
         StartCoroutine(TypewriterTextChoice(lighthouseText, 0));
         StartCoroutine(TypewriterTextChoice(edgeText, 1));
+        FindObjectOfType<GameManager>().SetGameState(GameState.CHOOSING);
     }
 
     private IEnumerator TypewriterTextChoice(TextMeshPro tmp, int choiceIndex)

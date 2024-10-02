@@ -97,8 +97,12 @@ public class PlayerManager : MonoBehaviour
         {
             Debug.Log("The player should make decision now.");
             UpdatePlayerRotation();
-            CheckDirection();
             //FindObjectOfType<DialogueTree>().StartDialogueTree();
+        }
+        else if (gameManager.GetGameState() == GameState.CHOOSING)
+        {
+            UpdatePlayerRotation();
+            CheckDirection();
         }
     }
 
@@ -130,7 +134,7 @@ public class PlayerManager : MonoBehaviour
     private void CheckDirection()
     {
         float align = Vector3.Dot(transform.forward, facingDir);
-        if (gameManager.GetGameState() == GameState.ASKING && ((align > 0 && align > threshold) || (align < 0 && align < -threshold))) // The player is facing the lighthouse
+        if (gameManager.GetGameState() == GameState.CHOOSING && ((align > 0 && align > threshold) || (align < 0 && align < -threshold))) // The player is facing the lighthouse
         {
             // TODO: the player is facing the lighthouse/the edge
             progressBar.gameObject.SetActive(true);
@@ -179,7 +183,7 @@ public class PlayerManager : MonoBehaviour
                 Debug.Log("PlayerManager: Should be starting a dialogue because charge has been met");
                 dialogueManager.StartDialogue();
                 GetComponentInChildren<FaceBehavior>().SetMoving();
-                //gameManager.SetGameState(GameState.ASKING);
+                gameManager.SetGameState(GameState.ASKING);
             }
         }
     }
@@ -188,6 +192,6 @@ public class PlayerManager : MonoBehaviour
     {
         currentChargeTime = 0;
         GetComponentInChildren<FaceBehavior>().ResetMoving();
-        //gameManager.SetGameState(GameState.ACTIVE);
+        gameManager.SetGameState(GameState.ACTIVE);
     }
 }
