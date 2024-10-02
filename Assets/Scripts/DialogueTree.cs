@@ -179,9 +179,9 @@ public class DialogueTree : MonoBehaviour
     {
         passengerManager.AdjustMood(currentActiveNode.choices[index].isPositive);
 
-        passengerText.text = string.Empty;
-        lighthouseText.text = string.Empty;
-        edgeText.text = string.Empty;
+        //passengerText.text = string.Empty;
+        //lighthouseText.text = string.Empty;
+        //edgeText.text = string.Empty;
 
         //Function to remove the pop up text;
     }
@@ -201,6 +201,7 @@ public class DialogueTree : MonoBehaviour
 
         lighthouseText.text = string.Empty;
         edgeText.text = string.Empty;
+        passengerText.text = string.Empty;
 
         dialogueManager.FinishDialogue();
 

@@ -188,6 +188,6 @@ public class PlayerManager : MonoBehaviour
     {
         currentChargeTime = 0;
         GetComponentInChildren<FaceBehavior>().ResetMoving();
-        gameManager.SetGameState(GameState.ACTIVE);
+        //gameManager.SetGameState(GameState.ACTIVE);
     }
 }
