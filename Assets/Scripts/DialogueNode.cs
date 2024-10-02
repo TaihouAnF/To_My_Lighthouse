@@ -9,12 +9,11 @@ public struct ChoiceStruct
     [TextArea(2,4)]
     public string choiceText;
 
-    //Value of the choice that the player makes to the passenger
-    public int choiceValue;
-
     //Text that the passenger will display after the player's selection
     [TextArea(2, 4)]
     public string choiceReaction;
+
+    public bool isPositive;
 }
 
 
@@ -30,4 +29,5 @@ public class DialogueNode : ScriptableObject
     [SerializeField]
     public ChoiceStruct[] choices;
 
+    public bool isFinal;
 }
