@@ -171,6 +171,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1484941621914382182}
   sceneController: {fileID: 0}
+  whiteOut: {r: 1, g: 1, b: 1, a: 1}
+  backgroundImage: {fileID: 7909811153631562679}
 --- !u!1 &8156367205921079377
 GameObject:
   m_ObjectHideFlags: 0

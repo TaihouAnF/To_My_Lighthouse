@@ -137,5 +137,8 @@ public class PassengerManagerScript : MonoBehaviour
         }
         clr.a = 1f;
         lighthouseManager.flowers.color = clr;
+
+
+        FindObjectOfType<FadeController>().WhiteoutFade();
     }
 }
