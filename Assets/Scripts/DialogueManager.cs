@@ -79,7 +79,9 @@ public class DialogueManager : MonoBehaviour
         {
             audioSource.clip = audioClips[audioIndex];
 
-            audioIndex++;        
+            audioIndex++;
+            
+            audioSource.Play();
         }
 
         FindObjectOfType<PlayerManager>().ResetCharge();
