@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Design_NewLighting.unity
     guid: 70d42dcf2b0ee004c85bc7c64b5b439a
+  - enabled: 1
+    path: Assets/Scenes/Level_End.unity
+    guid: 552b05b1d26036c49a2efd70ad33bac4
   m_configObjects: {}

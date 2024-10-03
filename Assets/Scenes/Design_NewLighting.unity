@@ -37435,6 +37435,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4705850523720159239, guid: f995538644ce7b1458e354b8cf02b59f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705850523720159239, guid: f995538644ce7b1458e354b8cf02b59f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 6.8999996
+      objectReference: {fileID: 0}
     - target: {fileID: 5230111630126540443, guid: f995538644ce7b1458e354b8cf02b59f, type: 3}
       propertyPath: m_LocalPosition.z
       value: -18.83
@@ -58912,6 +58920,10 @@ PrefabInstance:
       propertyPath: sceneController
       value: 
       objectReference: {fileID: 1043974}
+    - target: {fileID: 1484941621914382182, guid: cc6511268a697284b9d24946cd30b3f7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3670619436885371060, guid: cc6511268a697284b9d24946cd30b3f7, type: 3}
       propertyPath: m_Name
       value: AnimationManager

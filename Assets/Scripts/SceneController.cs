@@ -31,4 +31,9 @@ public class SceneController : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void GoBackMain()
+    {
+        ChangeSceneById(0);
+    }
 }
