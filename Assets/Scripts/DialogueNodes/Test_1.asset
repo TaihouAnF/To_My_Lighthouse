@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d9481496b8b9184b877d1cd3ea338f1, type: 3}
+  m_Name: Test_1
+  m_EditorClassIdentifier: 
+  passengerText:
+  - WOWZERS we're on arrays now incase we need multiple boxes!
+  choices:
+  - choiceText: WOW!
+    choiceValue: 1
+    choiceReaction: I know right
+  - choiceText: That's lame!
+    choiceValue: -1
+    choiceReaction: It should be working for what we want
